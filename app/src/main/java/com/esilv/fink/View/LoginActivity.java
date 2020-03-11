@@ -26,8 +26,16 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
         // data to populate the RecyclerView with
         ArrayList<User> users = new ArrayList<>();
         User gabriel = new User();
+        User Michel = new User();
+        User Michel2 = new User();
+        User Michel3 = new User();
         gabriel.setName("Gabriel");
+        Michel.setName("Bill");
         users.add(gabriel);
+        users.add(Michel);
+        users.add(Michel2);
+        users.add(Michel3);
+
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rvAnimals);

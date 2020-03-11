@@ -4,12 +4,14 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.esilv.fink.Model.User;
 import com.esilv.fink.R;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -37,6 +39,8 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public void onBindViewHolder(ViewHolder holder, int position) {
         User selected = mData.get(position);
         holder.myTextView.setText(selected.getName());
+        Picasso.get().load(selected.getImageUrl()).resize(150, 150).centerCrop().into(holder.myImageView);
+
     }
 
     // total number of rows
@@ -49,10 +53,11 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
-
+        ImageView myImageView;
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.nameTextView);
+            myImageView = itemView.findViewById(R.id.UserImageView);
             itemView.setOnClickListener(this);
         }
 

@@ -1,5 +1,7 @@
 package com.esilv.fink.Model;
 
+import java.util.Random;
+
 public class User {
     private String name;
     private String imageURL;
@@ -8,10 +10,16 @@ public class User {
     private int position;
 
     public User () {
+        Random random = new Random();
+        int nombreAleatoire = 0 + (int)(Math.random() * ((100 - 0) + 1));
+
+
+        this.imageURL= "https://i.picsum.photos/id/"+nombreAleatoire+ "/200/200.jpg";
         //empty constructor needed
     }
     public User (int position){
         this.position = position;
+
     }
 
     public User(String name, String imageUrl ,String Des) {
