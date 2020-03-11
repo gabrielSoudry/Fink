@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
@@ -26,6 +27,9 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
         animalNames.add("Gabriel");
         animalNames.add("Quentin");
         animalNames.add("Bill");
+        animalNames.add("Hubert");
+        animalNames.add("Slimane");
+        animalNames.add("");
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rvAnimals);
@@ -38,5 +42,7 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
     @Override
     public void onItemClick(View view, int position) {
         Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+
+        startActivity(new Intent(this, MainActivity.class));
     }
 }
