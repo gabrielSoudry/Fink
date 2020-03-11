@@ -1,19 +1,20 @@
 package com.esilv.fink.Model;
 
-public class Teacher {
+public class User {
     private String name;
     private String imageURL;
     private String key;
     private String description;
     private int position;
 
-    public Teacher() {
+    public User () {
         //empty constructor needed
     }
-    public Teacher (int position){
+    public User (int position){
         this.position = position;
     }
-    public Teacher(String name, String imageUrl ,String Des) {
+
+    public User(String name, String imageUrl ,String Des) {
         if (name.trim().equals("")) {
             name = "No Name";
         }
@@ -21,9 +22,11 @@ public class Teacher {
         this.imageURL = imageUrl;
         this.description = Des;
     }
+
     public String getDescription() {
         return description;
     }
+
     public void setDescription(String description) {
         this.description = description;
     }

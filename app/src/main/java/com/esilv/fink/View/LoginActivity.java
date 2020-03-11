@@ -10,6 +10,7 @@ import android.view.View;
 import android.widget.Toast;
 
 import com.esilv.fink.Adapter.MyRecyclerViewAdapter;
+import com.esilv.fink.Model.User;
 import com.esilv.fink.R;
 
 import java.util.ArrayList;
@@ -23,18 +24,15 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
         setContentView(R.layout.activity_login);
 
         // data to populate the RecyclerView with
-        ArrayList<String> animalNames = new ArrayList<>();
-        animalNames.add("Gabriel");
-        animalNames.add("Quentin");
-        animalNames.add("Bill");
-        animalNames.add("Hubert");
-        animalNames.add("Slimane");
-        animalNames.add("");
+        ArrayList<User> users = new ArrayList<>();
+        User gabriel = new User();
+        gabriel.setName("Gabriel");
+        users.add(gabriel);
 
         // set up the RecyclerView
         RecyclerView recyclerView = findViewById(R.id.rvAnimals);
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
-        adapter = new MyRecyclerViewAdapter(this, animalNames);
+        adapter = new MyRecyclerViewAdapter(this, users);
         adapter.setClickListener(this);
         recyclerView.setAdapter(adapter);
     }
