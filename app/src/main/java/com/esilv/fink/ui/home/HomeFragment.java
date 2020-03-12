@@ -57,8 +57,6 @@ public class HomeFragment extends Fragment {
                     ApiGetResponse apiResponse = response.body();
                     List<Customer> customers = apiResponse.getCustomers();
                     String test = customers.get(0).toString();
-                    System.out.println("______________________________________");
-                    System.out.println(test);
                     textView.setText(test);
                 }
             }
