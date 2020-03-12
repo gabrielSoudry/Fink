@@ -11,13 +11,9 @@ import java.util.List;
 import java.util.ListIterator;
 
 public class ApiGetResponse {
-    private List<SingleCustomerList> data;
+    private List<Customer> data;
 
-    public ArrayList<Customer> getCustomers() throws ParseException {
-        ArrayList<Customer> users = new ArrayList<Customer>();
-        for (int i = 0; i < data.size(); i++){
-            users.add(data.get(i).getCustomer());
-        }
-        return users;
+    public List<Customer> getCustomers() {
+        return data;
     }
 }

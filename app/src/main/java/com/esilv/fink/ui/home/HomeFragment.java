@@ -54,28 +54,12 @@ public class HomeFragment extends Fragment {
             public void onResponse(@NonNull Call<ApiGetResponse> call, @NonNull Response<ApiGetResponse> response) {
                 Log.d(TAG, "onResponse");
                 if (response.isSuccessful()) {
-                    ApiGetResponse apiSearchResponse = response.body();
-                    try {
-                        System.out.println(response.body().toString());
-                        final List<Customer> itemList = apiSearchResponse.getCustomers();
-                        System.out.println("______________________________");
-                        System.out.println(itemList.get(0).toString());
-                        System.out.println("______________________________");
-                        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-                            @Override
-                            public void onChanged(@Nullable String s) {
-                                textView.setText(itemList.get(0).toString());
-                            }
-                        });
-                    } catch (ParseException e) {
-                        e.printStackTrace();
-                        homeViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
-                            @Override
-                            public void onChanged(@Nullable String s) {
-                                textView.setText("bugged");
-                            }
-                        });
-                    }
+                    ApiGetResponse apiResponse = response.body();
+                    List<Customer> customers = apiResponse.getCustomers();
+                    String test = customers.get(0).toString();
+                    System.out.println("______________________________________");
+                    System.out.println(test);
+                    textView.setText(test);
                 }
             }
 
