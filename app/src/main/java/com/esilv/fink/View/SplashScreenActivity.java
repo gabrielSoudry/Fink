@@ -12,7 +12,7 @@ public class SplashScreenActivity extends AppCompatActivity {
 
         startActivity(new Intent(SplashScreenActivity.this, LoginActivity.class));
         try {
-            Thread.sleep(10000);
+            Thread.sleep(800);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
