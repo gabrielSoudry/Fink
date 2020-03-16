@@ -5,10 +5,9 @@
     <!--Also available: @drawable:launcher_screen_with_background-->
 
     <!--Background color of your Splash Screen-->
-    <item android:drawable="@android:color/holo_orange_dark" />
+    <item android:drawable="@android:color/white" />
 
     <item>
-        <!--This logo is 144x144 px. If your image is larger, you should scale it to fit nicely-->
         <bitmap
             android:gravity="center"
             android:src="@drawable/app_logo" />
