@@ -47,7 +47,7 @@
                 android:text="Description"
                 android:minLines="2"
                 android:textStyle="italic"
-                android:id="@+id/descriptionTextView"
+                android:id="@+id/NationalityTextView"
                 android:padding="5dp"/>
 
         </LinearLayout>

@@ -9,20 +9,20 @@ import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.esilv.fink.Model.User;
 import com.esilv.fink.R;
+import com.esilv.fink.api.Customer;
 import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
-    private List<User> mData;
+    private List<Customer> mData;
     private LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
-    public MyRecyclerViewAdapter(Context context, List<User> data) {
+    public MyRecyclerViewAdapter(Context context, List<Customer> data) {
         this.mInflater = LayoutInflater.from(context);
         this.mData = data;
     }
@@ -37,8 +37,12 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     // binds the data to the TextView in each row
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
-        User selected = mData.get(position);
-        holder.myTextView.setText(selected.getName());
+        Customer selected = mData.get(position);
+        holder.myTextView.setText(selected.getSURNAME());
+        holder.dateTextView.setText(selected.getBIRTHDATE().substring(0,10));
+        holder.nationality.setText(selected.getCOUNTRY());
+
+        System.out.println(selected.getSURNAME());
         Picasso.get().load(selected.getImageUrl()).resize(150, 150).centerCrop().into(holder.myImageView);
 
     }
@@ -54,10 +58,16 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         TextView myTextView;
         ImageView myImageView;
+        TextView dateTextView;
+        TextView nationality;
+
         ViewHolder(View itemView) {
             super(itemView);
             myTextView = itemView.findViewById(R.id.nameTextView);
             myImageView = itemView.findViewById(R.id.UserImageView);
+            dateTextView = itemView.findViewById(R.id.dateTextView);
+            nationality = itemView.findViewById(R.id.NationalityTextView);
+
             itemView.setOnClickListener(this);
         }
 
@@ -68,7 +78,7 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     }
 
     // convenience method for getting data at click position
-    public User getItem(int id) {
+    public Customer getItem(int id) {
         return mData.get(id);
     }
 

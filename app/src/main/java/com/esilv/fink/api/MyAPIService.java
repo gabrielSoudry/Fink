@@ -6,6 +6,6 @@ import retrofit2.http.Query;
 
 
 public interface MyAPIService {
-    @GET("get/select%20*%20from%20user_table%20where%20ROWNUM%20<%205")
+    @GET("get/select%20*%20from%20user_table")
     Call<ApiGetResponse> search();
 }

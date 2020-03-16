@@ -1,5 +1,7 @@
 package com.esilv.fink.api;
 
+import java.util.Random;
+
 public class Customer{
     private Integer CUSTOMERID;
     private String SURNAME;
@@ -14,6 +16,7 @@ public class Customer{
     private Boolean ISACTIVEMEMBER;
     private Float ESTIMATEDSALARY;
     private Boolean EXITED;
+    private String imageURL;
 
     public Integer getCUSTOMERID() {
         return CUSTOMERID;
@@ -65,6 +68,16 @@ public class Customer{
 
     public Boolean getEXITED() {
         return EXITED;
+    }
+
+    public String getImageUrl() {
+        return imageURL;
+    }
+
+    public  Customer() {
+        Random random = new Random();
+        int nombreAleatoire = 0 + (int)(Math.random() * ((500 - 0) + 1));
+        this.imageURL= "https://i.picsum.photos/id/"+nombreAleatoire+ "/200/200.jpg";
     }
 
     @Override
