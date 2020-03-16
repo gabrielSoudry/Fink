@@ -48,14 +48,14 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
                 .build();
 
         service = retrofit.create(MyAPIService.class);
-        final ProgressDialog progressDoalog;
-        progressDoalog = new ProgressDialog(LoginActivity.this);
-        progressDoalog.setMax(100);
-        progressDoalog.setMessage("Its loading....");
-        progressDoalog.setTitle("ProgressDialog bar example");
-        progressDoalog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        final ProgressDialog progressDialog;
+        progressDialog = new ProgressDialog(LoginActivity.this);
+        progressDialog.setMax(100);
+        progressDialog.setMessage("Its loading....");
+        progressDialog.setTitle("ProgressDialog bar example");
+        progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         // show it
-        progressDoalog.show();
+        progressDialog.show();
         service.search().enqueue(new Callback<ApiGetResponse>() {
             @Override
             public void onResponse(@NonNull Call<ApiGetResponse> call, @NonNull Response<ApiGetResponse> response) {
@@ -63,7 +63,7 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
                 if (response.isSuccessful()) {
                     ApiGetResponse apiResponse = response.body();
                     customers = apiResponse.getCustomers();
-                    progressDoalog.dismiss();
+                    progressDialog.dismiss();
                     RecyclerView recyclerView = findViewById(R.id.rvAnimals);
                     recyclerView.setLayoutManager(new LinearLayoutManager(LoginActivity.this));
                     adapter = new MyRecyclerViewAdapter(LoginActivity.this, customers);
@@ -83,11 +83,8 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
 
     @Override
     public void onItemClick(View view, int position) {
-        Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
+        //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
 
         startActivity(new Intent(this, MainActivity.class));
     }
-
-
-
 }

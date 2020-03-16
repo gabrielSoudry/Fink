@@ -17,6 +17,9 @@ import com.esilv.fink.R;
 import com.esilv.fink.api.ApiGetResponse;
 import com.esilv.fink.api.Customer;
 import com.esilv.fink.api.MyAPIService;
+import com.esilv.fink.api.Stat;
+import com.esilv.fink.api.StatisticResponse;
+import com.esilv.fink.api.StatisticsService;
 
 import java.text.ParseException;
 import java.util.List;
@@ -32,7 +35,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class HomeFragment extends Fragment {
 
     private HomeViewModel homeViewModel;
-    private MyAPIService service;
+    private StatisticsService service2;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -41,30 +44,34 @@ public class HomeFragment extends Fragment {
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        service = retrofit.create(MyAPIService.class);
+        service2 = retrofit.create(StatisticsService.class);
 
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         final TextView textView = root.findViewById(R.id.text_home);
 
+        textView.setText("gros bisous");
 
-        service.search().enqueue(new Callback<ApiGetResponse>() {
+        service2.search().enqueue(new Callback<StatisticResponse>() {
             @Override
-            public void onResponse(@NonNull Call<ApiGetResponse> call, @NonNull Response<ApiGetResponse> response) {
+            public void onResponse(@NonNull Call<StatisticResponse> call, @NonNull Response<StatisticResponse> response) {
                 Log.d(TAG, "onResponse");
                 if (response.isSuccessful()) {
-                    ApiGetResponse apiResponse = response.body();
-                    List<Customer> customers = apiResponse.getCustomers();
-                    String test = customers.get(0).toString();
+                    StatisticResponse statResponse = response.body();
+                    Stat stat = statResponse.getStatistics();
+                    String test = stat.toString();
 
                     textView.setText(test);
                 }
             }
 
             @Override
-            public void onFailure(Call<ApiGetResponse> call, Throwable t) {
+            public void onFailure(Call<StatisticResponse> call, Throwable t) {
+                System.out.println("FAILED______________________________________________");
                 Log.e(TAG, "onFailure", t);
+
+                textView.setText("fail updated");
             }
         });
 
