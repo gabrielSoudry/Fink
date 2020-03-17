@@ -10,8 +10,9 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
-        <activity android:name=".ListViewMultiChartActivity"></activity>
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+
+        <activity android:name=".View.ListViewMultiChartActivity"></activity>
 
         <activity android:name=".View.LoginActivity"></activity>
         <activity

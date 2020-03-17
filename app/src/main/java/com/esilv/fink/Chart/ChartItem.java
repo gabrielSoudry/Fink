@@ -1,4 +1,4 @@
-package com.esilv.fink;
+package com.esilv.fink.Chart;
 
 import android.content.Context;
 import android.view.View;

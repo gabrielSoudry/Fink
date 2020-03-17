@@ -1,5 +1,5 @@
 
-package com.esilv.fink;
+package com.esilv.fink.View;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.Toolbar;
 
+import com.esilv.fink.Chart.BarChartItem;
+import com.esilv.fink.Chart.ChartItem;
+import com.esilv.fink.Chart.DemoBase;
+import com.esilv.fink.Chart.LineChartItem;
+import com.esilv.fink.Chart.PieChartItem;
+import com.esilv.fink.R;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -27,7 +34,12 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
+import com.mikepenz.materialdrawer.model.DividerDrawerItem;
+import com.mikepenz.materialdrawer.model.PrimaryDrawerItem;
+import com.mikepenz.materialdrawer.model.SecondaryDrawerItem;
+import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -49,6 +61,29 @@ public class ListViewMultiChartActivity  extends DemoBase {
         setContentView(R.layout.activity_listview_chart);
         new DrawerBuilder().withActivity(this).build();
 
+        PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.drawer_item_home);
+        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName(R.string.drawer_item_settings);
+        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        setSupportActionBar(myToolbar);
+        //create the drawer and remember the `Drawer` result object
+        Drawer result = new DrawerBuilder()
+                .withActivity(this)
+                .withToolbar(myToolbar)
+                .addDrawerItems(
+                        item1,
+                        new DividerDrawerItem(),
+                        item2,
+                        new SecondaryDrawerItem().withName(R.string.drawer_item_settings)
+                )
+                .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
+                    @Override
+                    public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
+                        return  true;
+
+                        // do something with the clicked item :D
+                    }
+                })
+                .build();
         setTitle("ListViewMultiChartActivity");
 
         ListView lv = findViewById(R.id.listView1);
