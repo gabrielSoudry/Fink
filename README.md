@@ -1,14 +1,3 @@
-# Customer
-- id
-- Surname
-- CreditScore
-- Country
-- Gender
-- Birthdate
-- Tenure
-- Balance
-- NbOfProducts
-- HasCreditCard
-- IsActiveMember
-- EstimatedSalary
-- Exited
+# Fink The OpenSource Applicatiion for your budget !
+
+Demo : 
