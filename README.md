@@ -1,4 +1,4 @@
-# Fink The OpenSource Applicatiion for your budget !
+# Fink The OpenSource Application for your budget !
 
 Demo : 
 ![Demo](Demo.gif)
