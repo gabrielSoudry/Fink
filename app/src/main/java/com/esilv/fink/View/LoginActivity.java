@@ -10,10 +10,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
-import android.widget.Toast;
-
 import com.esilv.fink.Adapter.MyRecyclerViewAdapter;
-import com.esilv.fink.Model.User;
+import com.esilv.fink.ListViewMultiChartActivity;
 import com.esilv.fink.R;
 import com.esilv.fink.api.ApiGetResponse;
 import com.esilv.fink.api.Customer;
@@ -76,15 +74,15 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
                 Log.e(TAG, "onFailure", t);
             }
         });
-
-        // set up the RecyclerView
-
     }
 
     @Override
     public void onItemClick(View view, int position) {
         //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
 
-        startActivity(new Intent(this, MainActivity.class));
+        startActivity(new Intent(this, ListViewMultiChartActivity.class));
     }
+
+
+
 }

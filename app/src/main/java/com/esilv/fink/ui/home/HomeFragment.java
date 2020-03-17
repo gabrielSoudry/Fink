@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
+import com.esilv.fink.Model.DemoBase;
 import com.esilv.fink.R;
 import com.esilv.fink.api.ApiGetResponse;
 import com.esilv.fink.api.Customer;
@@ -29,6 +30,23 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+
+
+import java.util.ArrayList;
+import java.util.List;
+
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.highlight.Highlight;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+import com.github.mikephil.charting.listener.ChartTouchListener;
+import com.github.mikephil.charting.listener.OnChartGestureListener;
+import com.github.mikephil.charting.listener.OnChartValueSelectedListener;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
 
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
@@ -61,7 +79,6 @@ public class HomeFragment extends Fragment {
                     StatisticResponse statResponse = response.body();
                     Stat stat = statResponse.getStatistics();
                     String test = stat.toString();
-
                     textView.setText(test);
                 }
             }

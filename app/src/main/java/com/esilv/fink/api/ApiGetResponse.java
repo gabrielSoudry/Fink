@@ -10,7 +10,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
 
-public class ApiGetResponse {
+public class    ApiGetResponse {
     private List<Customer> data;
 
     public List<Customer> getCustomers() {
