@@ -79,7 +79,7 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
     public void onItemClick(View view, int position) {
         //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
 
-        startActivity(new Intent(this, ListViewMultiChartActivity.class));
+        startActivity(new Intent(this, Dashboard.class));
     }
 
 

@@ -12,7 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar">
 
-        <activity android:name=".View.ListViewMultiChartActivity"></activity>
+        <activity android:name=".View.Dashboard" android:label="Dashboard">
+        </activity>
 
         <activity android:name=".View.LoginActivity"></activity>
         <activity
