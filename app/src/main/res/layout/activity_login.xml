@@ -14,7 +14,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
 
-        android:id="@+id/rvAnimals"
+        android:id="@+id/rvCustomer"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 

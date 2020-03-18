@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
-import com.esilv.fink.Model.DemoBase;
 import com.esilv.fink.R;
 import com.esilv.fink.api.ApiGetResponse;
 import com.esilv.fink.api.Customer;
@@ -71,7 +70,7 @@ public class HomeFragment extends Fragment {
 
         textView.setText("gros bisous");
 
-        service2.search().enqueue(new Callback<StatisticResponse>() {
+        service2.search("1234").enqueue(new Callback<StatisticResponse>() {
             @Override
             public void onResponse(@NonNull Call<StatisticResponse> call, @NonNull Response<StatisticResponse> response) {
                 Log.d(TAG, "onResponse");

@@ -15,6 +15,7 @@ import com.esilv.fink.R;
 import com.esilv.fink.api.ApiGetResponse;
 import com.esilv.fink.api.Customer;
 import com.esilv.fink.api.MyAPIService;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -61,7 +62,7 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
                     ApiGetResponse apiResponse = response.body();
                     customers = apiResponse.getCustomers();
                     progressDialog.dismiss();
-                    RecyclerView recyclerView = findViewById(R.id.rvAnimals);
+                    RecyclerView recyclerView = findViewById(R.id.rvCustomer);
                     recyclerView.setLayoutManager(new LinearLayoutManager(LoginActivity.this));
                     adapter = new MyRecyclerViewAdapter(LoginActivity.this, customers);
                     adapter.setClickListener(LoginActivity.this);
@@ -78,8 +79,9 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
     @Override
     public void onItemClick(View view, int position) {
         //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-
-        startActivity(new Intent(this, Dashboard.class));
+        Intent intents = new Intent(LoginActivity.this, Dashboard.class);
+        intents.putExtra("customerLogin", adapter.getItem(position)); //Put your id to your next Intent
+        startActivity(intents);
     }
 
 

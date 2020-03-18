@@ -1,8 +1,9 @@
 package com.esilv.fink.api;
 
+import java.io.Serializable;
 import java.util.Random;
 
-public class Customer{
+public class Customer implements Serializable {
     private Integer CUSTOMERID;
     private String SURNAME;
     private Integer CREDITSCORE;

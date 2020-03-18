@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -13,9 +14,11 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
+import androidx.lifecycle.ViewModelProviders;
 
 import com.esilv.fink.Chart.BarChartItem;
 import com.esilv.fink.Chart.ChartItem;
@@ -23,6 +26,12 @@ import com.esilv.fink.Chart.DemoBase;
 import com.esilv.fink.Chart.LineChartItem;
 import com.esilv.fink.Chart.PieChartItem;
 import com.esilv.fink.R;
+import com.esilv.fink.api.Customer;
+import com.esilv.fink.api.MyAPIService;
+import com.esilv.fink.api.Stat;
+import com.esilv.fink.api.StatisticResponse;
+import com.esilv.fink.api.StatisticsService;
+import com.esilv.fink.ui.home.HomeViewModel;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -34,6 +43,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.google.gson.Gson;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -44,16 +54,38 @@ import com.mikepenz.materialdrawer.model.interfaces.IDrawerItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import static androidx.constraintlayout.widget.Constraints.TAG;
+
 
 public class Dashboard extends DemoBase {
 
+    private StatisticsService service2;
+    Stat stat;
+    ListView lv;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Customer customerSelected = (Customer)getIntent().getSerializableExtra("customerLogin");
         super.onCreate(savedInstanceState);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_listview_chart);
+        lv = findViewById(R.id.listView1);
         new DrawerBuilder().withActivity(this).build();
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://130.61.95.117:8000/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        service2 = retrofit.create(StatisticsService.class);
+        String id = String.valueOf(customerSelected.getCUSTOMERID());
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.drawer_item_home);
         SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("Our product");
@@ -82,24 +114,46 @@ public class Dashboard extends DemoBase {
                 .build();
         setTitle("Dashboard");
 
-        ListView lv = findViewById(R.id.listView1);
 
-        ArrayList<ChartItem> list = new ArrayList<>();
 
-        // 30 items
-        for (int i = 0; i < 30; i++) {
+        service2.search(id).enqueue(new Callback<StatisticResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<StatisticResponse> call, @NonNull Response<StatisticResponse> response) {
+                Log.d(TAG, "onResponse");
+                if (response.isSuccessful()) {
+                    StatisticResponse statResponse = response.body();
+                    stat = statResponse.getStatistics();
+                    String test = stat.toString();
+                    System.out.println(test);
+                    ArrayList<ChartItem> list = new ArrayList<>();
 
-            if(i % 3 == 0) {
-                list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
-            } else if(i % 3 == 1) {
-                list.add(new BarChartItem(generateDataBar(i + 1), getApplicationContext()));
-            } else if(i % 3 == 2) {
-                list.add(new PieChartItem(generateDataPie(), getApplicationContext()));
+                    // 30 items
+                    for (int i = 0; i < 30; i++) {
+
+                        if(i % 3 == 0) {
+                            list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
+                        } else if(i % 3 == 1) {
+                            list.add(new BarChartItem(generateDataBar(i + 1), getApplicationContext()));
+                        } else if(i % 3 == 2) {
+                            PieChartItem chart =  new PieChartItem(generateDataPie(), getApplicationContext());
+                            list.add(new PieChartItem(generateDataPie(), getApplicationContext()));
+                        }
+                    }
+
+                    ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
+                    lv.setAdapter(cda);
+                }
             }
-        }
 
-        ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
-        lv.setAdapter(cda);
+            @Override
+            public void onFailure(Call<StatisticResponse> call, Throwable t) {
+                System.out.println("FAILED______________________________________________");
+                Log.e(TAG, "onFailure", t);
+            }
+        });
+
+
+
     }
 
     /** adapter that supports 3 different item types */
@@ -175,7 +229,6 @@ public class Dashboard extends DemoBase {
      * @return Bar data
      */
     private BarData generateDataBar(int cnt) {
-
         ArrayList<BarEntry> entries = new ArrayList<>();
 
         for (int i = 0; i < 12; i++) {
@@ -197,21 +250,20 @@ public class Dashboard extends DemoBase {
      * @return Pie data
      */
     private PieData generateDataPie() {
-
         ArrayList<PieEntry> entries = new ArrayList<>();
-
-        for (int i = 0; i < 4; i++) {
-            entries.add(new PieEntry((float) ((Math.random() * 70) + 30), "Quarter " + (i+1)));
-        }
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getSHOPPING())),"Shopping")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getALIMENTATION())),"Alimentation")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getELECTRICITE())),"Electricite")));
 
         PieDataSet d = new PieDataSet(entries, "");
-
         // space between slices
         d.setSliceSpace(2f);
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);
 
         return new PieData(d);
+
     }
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -225,15 +277,13 @@ public class Dashboard extends DemoBase {
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse("https://github.com/PhilJay/MPAndroidChart/blob/master/MPChartExample/src/com/xxmassdeveloper/mpchartexample/ListViewMultiChartActivity.java"));
+                i.setData(Uri.parse(""));
                 startActivity(i);
                 break;
             }
         }
-
         return true;
     }
-
     @Override
     public void saveToGallery() { /* Intentionally left empty */ }
 }
