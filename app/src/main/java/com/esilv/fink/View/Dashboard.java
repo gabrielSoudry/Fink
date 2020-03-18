@@ -85,7 +85,8 @@ public class Dashboard extends DemoBase {
                 .build();
 
         service2 = retrofit.create(StatisticsService.class);
-        String id = String.valueOf(customerSelected.getCUSTOMERID());
+        String id = "CUSTOMERID=15634602";
+
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.drawer_item_home);
         SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("Our product");
