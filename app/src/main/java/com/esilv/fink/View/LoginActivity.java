@@ -15,6 +15,9 @@ import com.esilv.fink.R;
 import com.esilv.fink.api.ApiGetResponse;
 import com.esilv.fink.api.Customer;
 import com.esilv.fink.api.MyAPIService;
+import com.esilv.fink.api.Transaction;
+import com.esilv.fink.api.TransactionResponse;
+import com.esilv.fink.api.TransactionService;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -29,10 +32,11 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAdapter.ItemClickListener {
-
     MyRecyclerViewAdapter adapter;
     private MyAPIService service;
     List<Customer> customers = new ArrayList<>();
+    private TransactionService service2;
+    List<Transaction> transactions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,18 +50,20 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
                 .build();
 
         service = retrofit.create(MyAPIService.class);
+        service2 = retrofit.create(TransactionService.class);
+
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(LoginActivity.this);
         progressDialog.setMax(100);
-        progressDialog.setMessage("Its loading....");
-        progressDialog.setTitle("ProgressDialog bar example");
+        progressDialog.setMessage("database loading no jutsu....");
+        progressDialog.setTitle("Trying to fetch from database");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         // show it
         progressDialog.show();
         service.search().enqueue(new Callback<ApiGetResponse>() {
             @Override
             public void onResponse(@NonNull Call<ApiGetResponse> call, @NonNull Response<ApiGetResponse> response) {
-                Log.d(TAG, "onResponse ===========");
+                Log.d(TAG, "onResponse GetCustomers");
                 if (response.isSuccessful()) {
                     ApiGetResponse apiResponse = response.body();
                     customers = apiResponse.getCustomers();
@@ -74,6 +80,32 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
                 Log.e(TAG, "onFailure", t);
             }
         });
+
+        final ProgressDialog progressDialog2;
+        progressDialog2 = new ProgressDialog(LoginActivity.this);
+        progressDialog2.setMax(100);
+        progressDialog2.setMessage("database loading no jutsu....");
+        progressDialog2.setTitle("Trying to fetch from database");
+        progressDialog2.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
+        progressDialog2.show();
+        progressDialog2.incrementProgressBy(10);
+        service2.search("customerid = 16000000").enqueue(new Callback<TransactionResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<TransactionResponse> call, @NonNull Response<TransactionResponse> response) {
+                progressDialog2.incrementProgressBy(50);
+                if (response.isSuccessful()) {
+                    TransactionResponse transactionResponse = response.body();
+                    transactions = transactionResponse.getTransactions();
+
+                    progressDialog2.dismiss();
+                    System.out.println(transactions.size());
+                }
+            }
+            @Override
+            public void onFailure(Call<TransactionResponse> call, Throwable t) {
+                Log.e(TAG, "onFailure", t);
+            }
+        });
     }
 
     @Override
@@ -83,7 +115,4 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
         intents.putExtra("customerLogin", adapter.getItem(position)); //Put your id to your next Intent
         startActivity(intents);
     }
-
-
-
 }

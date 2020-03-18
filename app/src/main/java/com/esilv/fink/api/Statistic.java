@@ -1,6 +1,6 @@
 package com.esilv.fink.api;
 
-public class Stat{
+public class Statistic {
     private Integer CUSTOMERID;
     private Double ALIMENTATION;
     private Double LOISIRS;
@@ -64,7 +64,7 @@ public class Stat{
 
     @Override
     public String toString(){
-        String str = "Id : " +
+        return "Id : " +
                 CUSTOMERID + "\n" +
                 ALIMENTATION+ "\n" +
                 LOISIRS+ "\n" +
@@ -77,6 +77,5 @@ public class Stat{
                 LOYER+ "\n" +
                 ELECTRICITE+ "\n" +
                 INTERNET;
-        return str;
     }
 }

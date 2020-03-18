@@ -8,5 +8,3 @@ public interface StatisticsService {
     @GET("get/?query=select%20*%20from%20statistics%20where")
     Call<StatisticResponse> search(@Query("additionnal") String additionnal);
 }
-
-

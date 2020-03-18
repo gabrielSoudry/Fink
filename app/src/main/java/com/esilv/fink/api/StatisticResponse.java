@@ -3,9 +3,9 @@ package com.esilv.fink.api;
 import java.util.List;
 
 public class StatisticResponse {
-    private List<Stat> data;
+    private List<Statistic> data;
 
-    public Stat getStatistics() {
+    public Statistic getStatistics() {
         return data.get(0);
     }
 }

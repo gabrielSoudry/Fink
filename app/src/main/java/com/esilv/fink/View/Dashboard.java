@@ -14,11 +14,9 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProviders;
 
 import com.esilv.fink.Chart.BarChartItem;
 import com.esilv.fink.Chart.ChartItem;
@@ -27,11 +25,9 @@ import com.esilv.fink.Chart.LineChartItem;
 import com.esilv.fink.Chart.PieChartItem;
 import com.esilv.fink.R;
 import com.esilv.fink.api.Customer;
-import com.esilv.fink.api.MyAPIService;
-import com.esilv.fink.api.Stat;
+import com.esilv.fink.api.Statistic;
 import com.esilv.fink.api.StatisticResponse;
 import com.esilv.fink.api.StatisticsService;
-import com.esilv.fink.ui.home.HomeViewModel;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -43,7 +39,6 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
-import com.google.gson.Gson;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -66,7 +61,7 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class Dashboard extends DemoBase {
 
     private StatisticsService service2;
-    Stat stat;
+    Statistic statistic;
     ListView lv;
 
     @Override
@@ -85,7 +80,7 @@ public class Dashboard extends DemoBase {
                 .build();
 
         service2 = retrofit.create(StatisticsService.class);
-        String id = "CUSTOMERID=15634602";
+        String id = "CUSTOMERID=16000000";
 
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.drawer_item_home);
@@ -123,8 +118,8 @@ public class Dashboard extends DemoBase {
                 Log.d(TAG, "onResponse");
                 if (response.isSuccessful()) {
                     StatisticResponse statResponse = response.body();
-                    stat = statResponse.getStatistics();
-                    String test = stat.toString();
+                    statistic = statResponse.getStatistics();
+                    String test = statistic.toString();
                     System.out.println(test);
                     ArrayList<ChartItem> list = new ArrayList<>();
 
@@ -252,16 +247,16 @@ public class Dashboard extends DemoBase {
      */
     private PieData generateDataPie() {
         ArrayList<PieEntry> entries = new ArrayList<>();
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getSHOPPING())),"Shopping")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getELECTRICITE())),"Electricite")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getALIMENTATION())),"Alimentation")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getINTERNET())),"Internet")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getAUTRES())),"Autre")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getLOISIRS())),"Loisirs")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getMULTIMEDIA())),"Multimedia")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getSANTE())),"Sante")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getRESTAURANTS())),"Restaurant")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getRETRAITS())),"Retrait")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getSHOPPING())),"Shopping")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getELECTRICITE())),"Electricite")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getALIMENTATION())),"Alimentation")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getINTERNET())),"Internet")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getAUTRES())),"Autre")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getLOISIRS())),"Loisirs")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getMULTIMEDIA())),"Multimedia")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getSANTE())),"Sante")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getRESTAURANTS())),"Restaurant")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getRETRAITS())),"Retrait")));
 
         PieDataSet d = new PieDataSet(entries, "");
 
