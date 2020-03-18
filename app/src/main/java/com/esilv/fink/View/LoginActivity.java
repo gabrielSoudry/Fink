@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import com.esilv.fink.Adapter.MyRecyclerViewAdapter;
 import com.esilv.fink.R;
+import com.esilv.fink.SettingActivity;
 import com.esilv.fink.api.ApiGetResponse;
 import com.esilv.fink.api.Customer;
 import com.esilv.fink.api.MyAPIService;

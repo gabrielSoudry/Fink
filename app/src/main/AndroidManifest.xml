@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.esilv.fink">
+    package="com.esilv.fink" >
+
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
@@ -10,19 +11,24 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-
-        <activity android:name=".View.Dashboard" android:label="Dashboard">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+        <activity
+            android:name=".SettingsActivity2"
+            android:label="@string/title_activity_settings2" >
         </activity>
-
-        <activity android:name=".View.LoginActivity"></activity>
+        <activity
+            android:name=".View.Dashboard"
+            android:label="Dashboard" >
+        </activity>
+        <activity android:name=".View.LoginActivity" />
+        <activity android:name=".SettingActivity" />
         <activity
             android:name=".View.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
             android:name=".View.SplashScreenActivity"
-            android:theme="@style/AppTheme.Launcher">
+            android:theme="@style/AppTheme.Launcher" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

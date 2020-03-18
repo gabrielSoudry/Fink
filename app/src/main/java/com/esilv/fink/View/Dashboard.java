@@ -24,6 +24,8 @@ import com.esilv.fink.Chart.DemoBase;
 import com.esilv.fink.Chart.LineChartItem;
 import com.esilv.fink.Chart.PieChartItem;
 import com.esilv.fink.R;
+import com.esilv.fink.SettingActivity;
+import com.esilv.fink.SettingsActivity2;
 import com.esilv.fink.api.Customer;
 import com.esilv.fink.api.Statistic;
 import com.esilv.fink.api.StatisticResponse;
@@ -287,9 +289,13 @@ public class Dashboard extends DemoBase {
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.setData(Uri.parse(""));
+                i.setData(Uri.parse("https://www.facebook.com/"));
                 startActivity(i);
                 break;
+            }
+            case R.id.setting: {
+                Intent i = new Intent(this, SettingActivity.class);
+                startActivity(i);
             }
         }
         return true;
