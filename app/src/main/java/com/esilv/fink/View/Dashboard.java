@@ -252,13 +252,27 @@ public class Dashboard extends DemoBase {
     private PieData generateDataPie() {
         ArrayList<PieEntry> entries = new ArrayList<>();
         entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getSHOPPING())),"Shopping")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getALIMENTATION())),"Alimentation")));
         entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getELECTRICITE())),"Electricite")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getALIMENTATION())),"Alimentation")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getINTERNET())),"Internet")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getAUTRES())),"Autre")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getLOISIRS())),"Loisirs")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getMULTIMEDIA())),"Multimedia")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getSANTE())),"Sante")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getRESTAURANTS())),"Restaurant")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(stat.getRETRAITS())),"Retrait")));
 
         PieDataSet d = new PieDataSet(entries, "");
+
+        final int[] JOYFUL_COLORS = {
+                Color.rgb(217, 80, 138), Color.rgb(254, 149, 7), Color.rgb(0, 0, 0),
+                Color.rgb(106, 167, 134), Color.rgb(53, 194, 209),  Color.rgb(64, 89, 128), Color.rgb(149, 165, 124), Color.rgb(217, 184, 162),
+        };
+
+
         // space between slices
         d.setSliceSpace(2f);
-        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        d.setColors(JOYFUL_COLORS);
 
         return new PieData(d);
 
