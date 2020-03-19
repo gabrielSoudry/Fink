@@ -18,6 +18,7 @@ import com.github.mikephil.charting.data.ChartData;
 import com.github.mikephil.charting.data.PieData;
 import com.github.mikephil.charting.formatter.PercentFormatter;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.hotmail.or_dvir.easysettings.pojos.EasySettings;
 
 public class PieChartItem extends ChartItem {
 
@@ -70,6 +71,7 @@ public class PieChartItem extends ChartItem {
         mChartData.setValueTypeface(mTf);
         mChartData.setValueTextSize(11f);
         mChartData.setValueTextColor(Color.WHITE);
+
         // set data
         holder.chart.setData((PieData) mChartData);
 
@@ -81,6 +83,16 @@ public class PieChartItem extends ChartItem {
         l.setYEntrySpace(0f);
         l.setYOffset(0f);
 
+        boolean value = EasySettings.retrieveSettingsSharedPrefs(c).getBoolean("Darkmode", false);
+        if (value) {
+            System.out.println("================ici===========");
+            l.setTextColor(Color.WHITE);
+        }
+        else{
+            System.out.println("================ici===========");
+
+            l.setTextColor(Color.BLACK);
+        }
         // do not forget to refresh the chart
         // holder.chart.invalidate();
         holder.chart.animateY(900);

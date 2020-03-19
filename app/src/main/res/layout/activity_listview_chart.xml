@@ -5,7 +5,9 @@
     android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:label="My Activity Title">
+    android:id="@+id/linear"
+    android:label="My Activity Title"
+    android:background="@color/colorDark">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/my_toolbar"

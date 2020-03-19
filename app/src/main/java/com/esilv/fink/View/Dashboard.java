@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 
 import androidx.annotation.NonNull;
@@ -24,8 +25,7 @@ import com.esilv.fink.Chart.DemoBase;
 import com.esilv.fink.Chart.LineChartItem;
 import com.esilv.fink.Chart.PieChartItem;
 import com.esilv.fink.R;
-import com.esilv.fink.SettingActivity;
-import com.esilv.fink.SettingsActivity2;
+import com.esilv.fink.SettingsAcctivity;
 import com.esilv.fink.api.Customer;
 import com.esilv.fink.api.Statistic;
 import com.esilv.fink.api.StatisticResponse;
@@ -41,6 +41,7 @@ import com.github.mikephil.charting.data.PieDataSet;
 import com.github.mikephil.charting.data.PieEntry;
 import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
 import com.github.mikephil.charting.utils.ColorTemplate;
+import com.hotmail.or_dvir.easysettings.pojos.EasySettings;
 import com.mikepenz.materialdrawer.Drawer;
 import com.mikepenz.materialdrawer.DrawerBuilder;
 import com.mikepenz.materialdrawer.model.DividerDrawerItem;
@@ -66,10 +67,47 @@ public class Dashboard extends DemoBase {
     Statistic statistic;
     ListView lv;
 
+
+    @Override
+    protected void onResume() {
+        Log.v("Example", "onResume");
+
+        String action = getIntent().getAction();
+        // Prevent endless loop by adding a unique action, don't restart if action is present
+        if(action == null || !action.equals("Already created")) {
+            Log.v("Example", "Force restart");
+            Intent intent = new Intent(this, Dashboard.class);
+            startActivity(intent);
+            finish();
+        }
+        // Remove the unique action so the next time onResume is called it will restart
+        else
+            getIntent().setAction(null);
+
+        LinearLayout li= findViewById(R.id.linear);
+        boolean value = EasySettings.retrieveSettingsSharedPrefs(this).getBoolean("darkmode", false);
+
+        if(!value)
+            li.setBackgroundColor(Color.WHITE);
+        else
+            li.setBackgroundColor(Color.BLACK);
+        super.onResume();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        Log.v("Example", "onCreate");
+        getIntent().setAction("Already created");
         Customer customerSelected = (Customer)getIntent().getSerializableExtra("customerLogin");
+        boolean value = EasySettings.retrieveSettingsSharedPrefs(this).getBoolean("darkmode", false);
+        System.out.println("====================");
+        System.out.println(value);
+        System.out.println("====================");
+
+
         super.onCreate(savedInstanceState);
+        Log.v("Example", "onCreate");
+        getIntent().setAction("Already created");
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_listview_chart);
@@ -84,12 +122,18 @@ public class Dashboard extends DemoBase {
         service2 = retrofit.create(StatisticsService.class);
         String id = "CUSTOMERID=16000000";
 
+        LinearLayout li= findViewById(R.id.linear);
+
+        if(!value)
+            li.setBackgroundColor(Color.WHITE);
+        else
+            li.setBackgroundColor(Color.BLACK);
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.drawer_item_home);
         SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("Our product");
         SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(2).withName("Setting");
 
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
         //create the drawer and remember the `Drawer` result object
         Drawer result = new DrawerBuilder()
@@ -199,7 +243,6 @@ public class Dashboard extends DemoBase {
         d1.setCircleRadius(4.5f);
         d1.setHighLightColor(Color.rgb(244, 117, 117));
         d1.setDrawValues(false);
-
         ArrayList<Entry> values2 = new ArrayList<>();
 
         for (int i = 0; i < 12; i++) {
@@ -267,10 +310,10 @@ public class Dashboard extends DemoBase {
                 Color.rgb(106, 167, 134), Color.rgb(53, 194, 209),  Color.rgb(64, 89, 128), Color.rgb(149, 165, 124), Color.rgb(217, 184, 162),
         };
 
-
         // space between slices
         d.setSliceSpace(2f);
         d.setColors(JOYFUL_COLORS);
+
 
         return new PieData(d);
 
@@ -294,7 +337,7 @@ public class Dashboard extends DemoBase {
                 break;
             }
             case R.id.setting: {
-                Intent i = new Intent(this, SettingActivity.class);
+                Intent i = new Intent(this, SettingsAcctivity.class);
                 startActivity(i);
             }
         }

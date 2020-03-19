@@ -12,14 +12,12 @@ import android.util.Log;
 import android.view.View;
 import com.esilv.fink.Adapter.MyRecyclerViewAdapter;
 import com.esilv.fink.R;
-import com.esilv.fink.SettingActivity;
 import com.esilv.fink.api.ApiGetResponse;
 import com.esilv.fink.api.Customer;
 import com.esilv.fink.api.MyAPIService;
 import com.esilv.fink.api.Transaction;
 import com.esilv.fink.api.TransactionResponse;
 import com.esilv.fink.api.TransactionService;
-import com.google.gson.Gson;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -60,7 +58,7 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
         progressDialog.setTitle("Trying to fetch from database");
         progressDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
         // show it
-        progressDialog.show();
+        //progressDialog.show();
         service.search().enqueue(new Callback<ApiGetResponse>() {
             @Override
             public void onResponse(@NonNull Call<ApiGetResponse> call, @NonNull Response<ApiGetResponse> response) {
