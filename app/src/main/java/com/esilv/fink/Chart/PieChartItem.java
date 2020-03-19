@@ -83,7 +83,7 @@ public class PieChartItem extends ChartItem {
         l.setYEntrySpace(0f);
         l.setYOffset(0f);
 
-        boolean value = EasySettings.retrieveSettingsSharedPrefs(c).getBoolean("Darkmode", false);
+        boolean value = EasySettings.retrieveSettingsSharedPrefs(c).getBoolean("darkmode", false);
         if (value) {
             System.out.println("================ici===========");
             l.setTextColor(Color.WHITE);
