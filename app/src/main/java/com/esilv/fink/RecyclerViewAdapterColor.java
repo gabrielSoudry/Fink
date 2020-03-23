@@ -3,6 +3,7 @@ package com.esilv.fink;
 import android.content.Context;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,8 +14,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.hotmail.or_dvir.easysettings.pojos.EasySettings;
 
 import java.util.ArrayList;
+
+import static android.content.Context.MODE_PRIVATE;
 
 public class RecyclerViewAdapterColor extends RecyclerView.Adapter<RecyclerViewAdapterColor.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
@@ -45,6 +49,7 @@ public class RecyclerViewAdapterColor extends RecyclerView.Adapter<RecyclerViewA
                 .load(mImages.get(position))
                 .into(holder.img);
 
+
         holder.txt.setText(mNames.get(position));
 
         holder.parent_layout.setOnClickListener(new View.OnClickListener() {
@@ -52,6 +57,11 @@ public class RecyclerViewAdapterColor extends RecyclerView.Adapter<RecyclerViewA
             public void onClick(View v) {
                 Log.d(TAG, "onClick: Clicked");
                 Toast.makeText(mcontext, mNames.get(position), Toast.LENGTH_SHORT).show();
+                EasySettings.retrieveSettingsSharedPrefs(mcontext)
+                        .edit()
+                        .putInt("colors", position)
+                        .apply();
+
             }
         });
     }

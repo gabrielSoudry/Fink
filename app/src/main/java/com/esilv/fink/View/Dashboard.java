@@ -320,7 +320,39 @@ public class Dashboard extends DemoBase {
 
         BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
 
-        d.setColors(ColorTemplate.VORDIPLOM_COLORS);
+        int value = EasySettings.retrieveSettingsSharedPrefs(this).getInt("colors", 0);
+
+        final int[] LIBERTY_COLORS = {
+                Color.rgb(207, 248, 246), Color.rgb(148, 212, 212), Color.rgb(136, 180, 187),
+                Color.rgb(118, 174, 175), Color.rgb(42, 109, 130)
+        };
+
+        final int[] p0 = {
+            Color.parseColor("#f6d186"),Color.parseColor("#fcf7bb"),Color.parseColor("#cbe2b0"),Color.parseColor("#f19292")
+        };
+
+        final int[] p1 = {
+                Color.parseColor("#084177"),Color.parseColor("#687466"),Color.parseColor("#cd8d7b"),Color.parseColor("#fbc490")
+        };
+        final int[] p2 = {
+                Color.parseColor("#f76a8c"),Color.parseColor("#f8dc88"),Color.parseColor("#f8fab8"),Color.parseColor("#ccf0e1")
+        };
+
+        final int[] p3 = {
+                Color.parseColor("#ffd1bd"),Color.parseColor("#ffb0cd"),Color.parseColor("#ffffff"),Color.parseColor("#c2f0fc")
+        };
+        final int[] p4 = {
+                Color.parseColor("#000000"),Color.parseColor("#323232"),Color.parseColor("#ff1e56"),Color.parseColor("#ffac41")
+        };
+
+
+
+        if (value==0) d.setColors(p0);
+        else if (value==1) d.setColors(p1);
+        else if (value==2) d.setColors(p2);
+        else if (value==3) d.setColors(p3);
+        else if (value==4) d.setColors(p4);
+
         d.setHighLightAlpha(255);
 
         BarData cd = new BarData(d);
