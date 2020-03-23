@@ -76,7 +76,7 @@ public class BarChartItem extends ChartItem {
         rightAxis.setTypeface(mTf);
         rightAxis.setLabelCount(5, false);
         rightAxis.setSpaceTop(20f);
-        //rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+        rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         mChartData.setValueTypeface(mTf);
 
@@ -97,16 +97,20 @@ public class BarChartItem extends ChartItem {
         BarEntryLabels.add("N");
         BarEntryLabels.add("D");
         holder.chart.getXAxis().setTextColor(Color.WHITE);
+        holder.chart.getLegend().setEnabled(false);   // Hide the legend
 
         boolean value = EasySettings.retrieveSettingsSharedPrefs(c).getBoolean("darkmode", false);
         if (value) {
             holder.chart.getXAxis().setTextColor(Color.WHITE);
             rightAxis.setTextColor(Color.WHITE);
+            leftAxis.setTextColor(Color.WHITE);
 
         }
         else{
             holder.chart.getXAxis().setTextColor(Color.BLACK);
             rightAxis.setTextColor(Color.BLACK);
+            leftAxis.setTextColor(Color.BLACK);
+
         }
 
         holder.chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(BarEntryLabels));
