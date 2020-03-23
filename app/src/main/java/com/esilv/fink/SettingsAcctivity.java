@@ -40,16 +40,7 @@ public class SettingsAcctivity extends AppCompatActivity {
         setSupportActionBar(myToolbar);
 
         ArrayList<SettingsObject> mySettingsList = EasySettings.createSettingsArray(
-                new BasicSettingsObject.Builder("basicSettingsKey1", "fancy title 1")
-                        .setSummary("fancy summary")
-                        .build(),
-                new BasicSettingsObject.Builder("basicSettingsKey2","fancy title 2")
-                        .setSummary("not so fancy summary")
-                        .build(),
-                new CheckBoxSettingsObject.Builder("cehckBoxKey", "checkbox title", false)
-                        .setSummary("checkbox summary")
-                        .build(),
-                new SwitchSettingsObject.Builder("darkmode", "switch title", true)
+                new SwitchSettingsObject.Builder("darkmode", "DarkMode", true)
                         .setUseValueAsSummary()
                         .addDivider()
                         .build());

@@ -30,6 +30,9 @@ import com.esilv.fink.api.Customer;
 import com.esilv.fink.api.Statistic;
 import com.esilv.fink.api.StatisticResponse;
 import com.esilv.fink.api.StatisticsService;
+import com.esilv.fink.api.Transaction;
+import com.esilv.fink.api.TransactionResponse;
+import com.esilv.fink.api.TransactionService;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
@@ -64,19 +67,25 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 public class Dashboard extends DemoBase {
 
     private StatisticsService service2;
+    private TransactionService service3;
     Statistic statistic;
+    List<Transaction> transaction;
     ListView lv;
+    ArrayList<ChartItem> list = new ArrayList<>();
+    Customer customerSelected ;
 
 
     @Override
     protected void onResume() {
         Log.v("Example", "onResume");
-
+        customerSelected = (Customer)getIntent().getSerializableExtra("customerLogin");
         String action = getIntent().getAction();
         // Prevent endless loop by adding a unique action, don't restart if action is present
         if(action == null || !action.equals("Already created")) {
             Log.v("Example", "Force restart");
             Intent intent = new Intent(this, Dashboard.class);
+            intent.putExtra("customerLogin", customerSelected); //Put your id to your next Intent
+
             startActivity(intent);
             finish();
         }
@@ -98,7 +107,6 @@ public class Dashboard extends DemoBase {
     protected void onCreate(Bundle savedInstanceState) {
         Log.v("Example", "onCreate");
         getIntent().setAction("Already created");
-        Customer customerSelected = (Customer)getIntent().getSerializableExtra("customerLogin");
         boolean value = EasySettings.retrieveSettingsSharedPrefs(this).getBoolean("darkmode", false);
         System.out.println("====================");
         System.out.println(value);
@@ -106,6 +114,7 @@ public class Dashboard extends DemoBase {
 
 
         super.onCreate(savedInstanceState);
+        customerSelected = (Customer)getIntent().getSerializableExtra("customerLogin");
         Log.v("Example", "onCreate");
         getIntent().setAction("Already created");
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
@@ -120,7 +129,9 @@ public class Dashboard extends DemoBase {
                 .build();
 
         service2 = retrofit.create(StatisticsService.class);
-        String id = "CUSTOMERID=16000000";
+        service3 = retrofit.create(TransactionService.class);
+
+        String id = "CUSTOMERID=" + customerSelected.getCUSTOMERID();
 
         LinearLayout li= findViewById(R.id.linear);
 
@@ -167,20 +178,11 @@ public class Dashboard extends DemoBase {
                     statistic = statResponse.getStatistics();
                     String test = statistic.toString();
                     System.out.println(test);
-                    ArrayList<ChartItem> list = new ArrayList<>();
 
-                    // 30 items
-                    for (int i = 0; i < 30; i++) {
+                    PieChartItem chart =  new PieChartItem(generateDataPie(), getApplicationContext());
+                    list.add(new PieChartItem(generateDataPie(), getApplicationContext()));
 
-                        if(i % 3 == 0) {
-                            list.add(new LineChartItem(generateDataLine(i + 1), getApplicationContext()));
-                        } else if(i % 3 == 1) {
-                            list.add(new BarChartItem(generateDataBar(i + 1), getApplicationContext()));
-                        } else if(i % 3 == 2) {
-                            PieChartItem chart =  new PieChartItem(generateDataPie(), getApplicationContext());
-                            list.add(new PieChartItem(generateDataPie(), getApplicationContext()));
-                        }
-                    }
+
 
                     ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
                     lv.setAdapter(cda);
@@ -189,6 +191,37 @@ public class Dashboard extends DemoBase {
 
             @Override
             public void onFailure(Call<StatisticResponse> call, Throwable t) {
+                System.out.println("FAILED______________________________________________");
+                Log.e(TAG, "onFailure", t);
+            }
+        });
+
+        customerSelected = (Customer)getIntent().getSerializableExtra("customerLogin");
+
+        service3.search(id).enqueue(new Callback<TransactionResponse>() {
+            @Override
+            public void onResponse(@NonNull Call<TransactionResponse> call, @NonNull Response<TransactionResponse> response) {
+                Log.d(TAG, "onResponse");
+                if (response.isSuccessful()) {
+                    TransactionResponse transac = response.body();
+                    transaction = transac.getTransactions();
+
+                    String test = statistic.toString();
+                    for (Transaction a : transaction) {
+                        System.out.println("transaction");
+                        System.out.println(a.getVALUE());
+                    }
+                    // 30 items
+                    //list.add(new LineChartItem(generateDataLine(2 + 1), getApplicationContext()));
+                    list.add(new BarChartItem(generateDataBar(2+ 1,transaction), getApplicationContext()));
+
+                    ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
+                    lv.setAdapter(cda);
+                }
+            }
+
+            @Override
+            public void onFailure(Call<TransactionResponse> call, Throwable t) {
                 System.out.println("FAILED______________________________________________");
                 Log.e(TAG, "onFailure", t);
             }
@@ -269,14 +302,24 @@ public class Dashboard extends DemoBase {
      *
      * @return Bar data
      */
-    private BarData generateDataBar(int cnt) {
+    private BarData generateDataBar(int cnt, List<Transaction> transaction) {
         ArrayList<BarEntry> entries = new ArrayList<>();
+        Double [] amountByMonth = new  Double[13];
+        for (int i=0; i<amountByMonth.length;i++) amountByMonth[i] = new Double(0);
+        for (Transaction a : transaction) {
+            System.out.println(a.getMONTH() +" value:" + a.getVALUE());
+                amountByMonth[a.getMONTH()] += a.getVALUE();
+                System.out.println(a.getVALUE());
+        }
 
-        for (int i = 0; i < 12; i++) {
-            entries.add(new BarEntry(i, (int) (Math.random() * 70) + 30));
+        for (int i = 1; i < 13; i++) {
+            System.out.println("amount============");
+            System.out.println(amountByMonth[i]);
+            entries.add(new BarEntry(i, (int)Math.round(amountByMonth[i]),"J"));
         }
 
         BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
+
         d.setColors(ColorTemplate.VORDIPLOM_COLORS);
         d.setHighLightAlpha(255);
 
@@ -332,12 +375,16 @@ public class Dashboard extends DemoBase {
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
+                i.putExtra("customerLogin", customerSelected); //Put your id to your next Intent
+
                 i.setData(Uri.parse("https://www.facebook.com/"));
                 startActivity(i);
                 break;
             }
             case R.id.setting: {
                 Intent i = new Intent(this, SettingsAcctivity.class);
+                i.putExtra("customerLogin", customerSelected); //Put your id to your next Intent
+
                 startActivity(i);
             }
         }

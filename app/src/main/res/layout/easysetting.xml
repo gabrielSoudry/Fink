@@ -28,11 +28,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
+            android:paddingLeft="10dp"
             android:text="Apparrence"
             android:textStyle="bold"
             android:textColor="@color/md_cyan_700"
             style="?android:attr/preferenceStyle"
             />
+
+        <TextView
+            android:id="@+id/textView3"
+            style="?android:attr/preferenceStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="10dp"
+            android:paddingTop="10dp"
+            android:text="Graphic color"
+            android:textColor="@color/md_black_1000" />
+
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerview"

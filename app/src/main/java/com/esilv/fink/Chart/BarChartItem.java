@@ -2,6 +2,7 @@ package com.esilv.fink.Chart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,10 @@ import com.github.mikephil.charting.components.XAxis.XAxisPosition;
 import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.ChartData;
+import com.github.mikephil.charting.formatter.IndexAxisValueFormatter;
+import com.hotmail.or_dvir.easysettings.pojos.EasySettings;
+
+import java.util.ArrayList;
 
 public class BarChartItem extends ChartItem {
 
@@ -59,6 +64,7 @@ public class BarChartItem extends ChartItem {
         xAxis.setTypeface(mTf);
         xAxis.setDrawGridLines(false);
         xAxis.setDrawAxisLine(true);
+        xAxis.setLabelCount(12);
 
         YAxis leftAxis = holder.chart.getAxisLeft();
         leftAxis.setTypeface(mTf);
@@ -70,12 +76,40 @@ public class BarChartItem extends ChartItem {
         rightAxis.setTypeface(mTf);
         rightAxis.setLabelCount(5, false);
         rightAxis.setSpaceTop(20f);
-        rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
+        //rightAxis.setAxisMinimum(0f); // this replaces setStartAtZero(true)
 
         mChartData.setValueTypeface(mTf);
 
         // set data
         holder.chart.setData((BarData) mChartData);
+        ArrayList<String> BarEntryLabels = new ArrayList<String>();
+        BarEntryLabels.add("J");
+        BarEntryLabels.add("J");
+        BarEntryLabels.add("F");
+        BarEntryLabels.add("M");
+        BarEntryLabels.add("A");
+        BarEntryLabels.add("M");
+        BarEntryLabels.add("J");
+        BarEntryLabels.add("J");
+        BarEntryLabels.add("A");
+        BarEntryLabels.add("S");
+        BarEntryLabels.add("O");
+        BarEntryLabels.add("N");
+        BarEntryLabels.add("D");
+        holder.chart.getXAxis().setTextColor(Color.WHITE);
+
+        boolean value = EasySettings.retrieveSettingsSharedPrefs(c).getBoolean("darkmode", false);
+        if (value) {
+            holder.chart.getXAxis().setTextColor(Color.WHITE);
+            rightAxis.setTextColor(Color.WHITE);
+
+        }
+        else{
+            holder.chart.getXAxis().setTextColor(Color.BLACK);
+            rightAxis.setTextColor(Color.BLACK);
+        }
+
+        holder.chart.getXAxis().setValueFormatter(new IndexAxisValueFormatter(BarEntryLabels));
         holder.chart.setFitBars(true);
 
         // do not forget to refresh the chart
