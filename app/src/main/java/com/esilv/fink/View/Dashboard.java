@@ -182,8 +182,6 @@ public class Dashboard extends DemoBase {
                     PieChartItem chart =  new PieChartItem(generateDataPie(), getApplicationContext());
                     list.add(new PieChartItem(generateDataPie(), getApplicationContext()));
 
-
-
                     ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
                     lv.setAdapter(cda);
                 }
@@ -214,7 +212,7 @@ public class Dashboard extends DemoBase {
                     // 30 items
                     //list.add(new LineChartItem(generateDataLine(2 + 1), getApplicationContext()));
                     list.add(new BarChartItem(generateDataBar(2+ 1,transaction), getApplicationContext()));
-
+                    list.add(new LineChartItem(generateDataLine(3+ 1,transaction), getApplicationContext()));
                     ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
                     lv.setAdapter(cda);
                 }
@@ -263,12 +261,21 @@ public class Dashboard extends DemoBase {
      *
      * @return Line data
      */
-    private LineData generateDataLine(int cnt) {
+    private LineData generateDataLine(int cnt,List<Transaction> transaction) {
 
         ArrayList<Entry> values1 = new ArrayList<>();
 
+        Double [] amountByMonth = new  Double[13];
+        for (int i=0; i<amountByMonth.length;i++) amountByMonth[i] = new Double(0);
+        for (Transaction a : transaction) {
+            System.out.println(a.getMONTH() +" value:" + a.getVALUE());
+            amountByMonth[a.getMONTH()] += a.getVALUE();
+            System.out.println(a.getVALUE());
+        }
+
+
         for (int i = 0; i < 12; i++) {
-            values1.add(new Entry(i, (int) (Math.random() * 65) + 40));
+            values1.add(new Entry(i, (int)Math.round(amountByMonth[i])));
         }
 
         LineDataSet d1 = new LineDataSet(values1, "New DataSet " + cnt + ", (1)");
