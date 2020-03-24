@@ -29,11 +29,8 @@ import android.graphics.Paint;
 import android.graphics.RectF;
 import android.graphics.drawable.Drawable;
 
-
 import androidx.annotation.NonNull;
 import androidx.core.content.ContextCompat;
-
-
 
 import com.cleveroad.slidingtutorial.Renderer;
 import com.esilv.fink.R;
@@ -45,8 +42,8 @@ import com.esilv.fink.R;
 @SuppressWarnings("WeakerAccess")
 public class DrawableRenderer implements Renderer {
 
-    private Drawable mDrawableActive;
-    private Drawable mDrawable;
+    private final Drawable mDrawableActive;
+    private final Drawable mDrawable;
 
     public static DrawableRenderer create(@NonNull Context context) {
         return new DrawableRenderer(context);

@@ -1,13 +1,7 @@
 <resources>
-    <string name="hello_world">Hello world!</string>
-    <string name="text_web_ceo">WEB ANALYTICS</string>
-    <string name="text_web_dev">WEB DEVELOPER</string>
-    <string name="text_e_commerce">e-Commerce</string>
 
     <string name="app_name">Fink</string>
     <string name="title_activity_main">MainActivity</string>
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
     <string name="nav_header_subtitle">android.studio@android.com</string>
     <string name="nav_header_desc">Navigation header</string>
@@ -19,34 +13,15 @@
 
     <string name="home_second">Home Second </string>
     <string name="drawer_item_home"> Home </string>
-    <string name="drawer_item_settings"> Setting </string>
-    <string name="title_activity_settings2">Settings</string>
 
     <!-- Preference Titles -->
-    <string name="messages_header">Messages</string>
-    <string name="sync_header">Sync</string>
 
     <!-- Messages Preferences -->
-    <string name="signature_title">Your signature</string>
-    <string name="reply_title">Default reply action</string>
 
     <!-- Sync Preferences -->
-    <string name="sync_title">Sync email periodically</string>
-    <string name="attachment_title">Download incoming attachments</string>
-    <string name="attachment_summary_on">Automatically download attachments for incoming emails
-    </string>
-    <string name="attachment_summary_off">Only download attachments when manually requested</string>
-    <string name="title_activity_set">Settings</string>
-    <string name="title_activity_settings">Settings</string>
     <string name="title_activity_transaction">TransactionActivity</string>
     <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
     <string name="your_monthly_expenses">Your monthly expenses</string>
     <string name="line_chart">2nd Chart</string>
     <string name="typedepense">Restaurant</string>

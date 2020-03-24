@@ -65,13 +65,11 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 public class Dashboard extends DemoBase {
-    private StatisticsService service2;
-    private TransactionService service3;
-    Statistic statistic;
-    List<Transaction> transaction;
-    ListView lv;
-    ArrayList<ChartItem> list = new ArrayList<>();
-    Customer customerSelected ;
+    private final ArrayList<ChartItem> list = new ArrayList<>();
+    private Statistic statistic;
+    private List<Transaction> transaction;
+    private ListView lv;
+    private Customer customerSelected;
 
     @Override
     protected void onResume() {
@@ -126,8 +124,8 @@ public class Dashboard extends DemoBase {
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
 
-        service2 = retrofit.create(StatisticsService.class);
-        service3 = retrofit.create(TransactionService.class);
+            StatisticsService service2 = retrofit.create(StatisticsService.class);
+            TransactionService service3 = retrofit.create(TransactionService.class);
 
         String id = "CUSTOMERID=" + customerSelected.getCUSTOMERID();
 
@@ -218,8 +216,8 @@ public class Dashboard extends DemoBase {
                     }*/
                     // 30 items
                     //list.add(new LineChartItem(generateDataLine(2 + 1), getApplicationContext()));
-                    list.add(new BarChartItem(generateDataBar(2+ 1,transaction), getApplicationContext()));
-                    list.add(new LineChartItem(generateDataLine(3+ 1,transaction), getApplicationContext()));
+                    list.add(new BarChartItem(generateDataBar(transaction), getApplicationContext()));
+                    list.add(new LineChartItem(generateDataLine(transaction), getApplicationContext()));
                     ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
                     lv.setAdapter(cda);
                 }
@@ -265,7 +263,7 @@ public class Dashboard extends DemoBase {
      *
      * @return Line data
      */
-    private LineData generateDataLine(int cnt,List<Transaction> transaction) {
+    private LineData generateDataLine(List<Transaction> transaction) {
 
         ArrayList<Entry> values1 = new ArrayList<>();
 
@@ -282,7 +280,7 @@ public class Dashboard extends DemoBase {
             values1.add(new Entry(i, (int)Math.round(amountByMonth[i])));
         }
 
-        LineDataSet d1 = new LineDataSet(values1, "New DataSet " + cnt + ", (1)");
+        LineDataSet d1 = new LineDataSet(values1, "New DataSet " + 4 + ", (1)");
         d1.setLineWidth(2.5f);
         d1.setCircleRadius(4.5f);
         d1.setHighLightColor(Color.rgb(244, 117, 117));
@@ -293,7 +291,7 @@ public class Dashboard extends DemoBase {
             values2.add(new Entry(i, values1.get(i).getY() - 30));
         }
 
-        LineDataSet d2 = new LineDataSet(values2, "New DataSet " + cnt + ", (2)");
+        LineDataSet d2 = new LineDataSet(values2, "New DataSet " + 4 + ", (2)");
         d2.setLineWidth(2.5f);
         d2.setCircleRadius(4.5f);
         d2.setHighLightColor(Color.rgb(244, 117, 117));
@@ -313,7 +311,7 @@ public class Dashboard extends DemoBase {
      *
      * @return Bar data
      */
-    private BarData generateDataBar(int cnt, List<Transaction> transaction) {
+    private BarData generateDataBar(List<Transaction> transaction) {
         ArrayList<BarEntry> entries = new ArrayList<>();
         Double [] amountByMonth = new  Double[13];
         for (int i=0; i<amountByMonth.length;i++) amountByMonth[i] = new Double(0);
@@ -329,7 +327,7 @@ public class Dashboard extends DemoBase {
             entries.add(new BarEntry(i, (int)Math.round(amountByMonth[i]),"J"));
         }
 
-        BarDataSet d = new BarDataSet(entries, "New DataSet " + cnt);
+        BarDataSet d = new BarDataSet(entries, "New DataSet " + 3);
 
         int value = EasySettings.retrieveSettingsSharedPrefs(this).getInt("colors", 0);
 

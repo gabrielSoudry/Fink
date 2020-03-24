@@ -1,7 +1,5 @@
 package com.esilv.fink;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.LinearLayout;
@@ -11,10 +9,6 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.esilv.fink.View.Dashboard;
-import com.hotmail.or_dvir.easysettings.pojos.BasicSettingsObject;
-import com.hotmail.or_dvir.easysettings.pojos.CheckBoxSettingsObject;
 import com.hotmail.or_dvir.easysettings.pojos.EasySettings;
 import com.hotmail.or_dvir.easysettings.pojos.SettingsObject;
 import com.hotmail.or_dvir.easysettings.pojos.SwitchSettingsObject;
@@ -23,8 +17,8 @@ import java.util.ArrayList;
 
 public class SettingsAcctivity extends AppCompatActivity {
 
-    private ArrayList<String> ImageUrls = new ArrayList<>();
-    private ArrayList<String> ImageNames = new ArrayList<>();
+    private final ArrayList<String> ImageUrls = new ArrayList<>();
+    private final ArrayList<String> ImageNames = new ArrayList<>();
 
 
 
@@ -36,7 +30,7 @@ public class SettingsAcctivity extends AppCompatActivity {
         SettingsAcctivity.this.setTitle("Setting");
         setContentView(R.layout.easysetting);
         LinearLayout container = findViewById(R.id.settingsContainer);
-        Toolbar myToolbar = (Toolbar) findViewById(R.id.my_toolbar);
+        Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
 
         ArrayList<SettingsObject> mySettingsList = EasySettings.createSettingsArray(

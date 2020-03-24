@@ -1,18 +1,13 @@
-package com.esilv.fink;
+package com.esilv.fink.View;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
-import android.widget.LinearLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.esilv.fink.View.Dashboard;
+import com.esilv.fink.R;
+import com.esilv.fink.RecyclerViewAdapterColor;
 import com.hotmail.or_dvir.easysettings.pojos.BasicSettingsObject;
 import com.hotmail.or_dvir.easysettings.pojos.CheckBoxSettingsObject;
 import com.hotmail.or_dvir.easysettings.pojos.EasySettings;
@@ -23,8 +18,8 @@ import java.util.ArrayList;
 
 public class SettingsActivity extends AppCompatActivity {
 
-    private ArrayList<String> ImageUrls = new ArrayList<>();
-    private ArrayList<String> ImageNames = new ArrayList<>();
+    private final ArrayList<String> ImageUrls = new ArrayList<>();
+    private final ArrayList<String> ImageNames = new ArrayList<>();
 
 
 

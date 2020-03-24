@@ -17,7 +17,7 @@ public abstract class ChartItem {
     static final int TYPE_LINECHART = 1;
     static final int TYPE_PIECHART = 2;
 
-    ChartData<?> mChartData;
+    final ChartData<?> mChartData;
 
     ChartItem(ChartData<?> cd) {
         this.mChartData = cd;

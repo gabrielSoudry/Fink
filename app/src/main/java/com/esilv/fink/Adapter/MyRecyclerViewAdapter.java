@@ -17,8 +17,8 @@ import java.util.List;
 
 public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAdapter.ViewHolder> {
 
-    private List<Customer> mData;
-    private LayoutInflater mInflater;
+    private final List<Customer> mData;
+    private final LayoutInflater mInflater;
     private ItemClickListener mClickListener;
 
     // data is passed into the constructor
@@ -56,10 +56,10 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        TextView myTextView;
-        ImageView myImageView;
-        TextView dateTextView;
-        TextView nationality;
+        final TextView myTextView;
+        final ImageView myImageView;
+        final TextView dateTextView;
+        final TextView nationality;
 
         ViewHolder(View itemView) {
             super(itemView);

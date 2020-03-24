@@ -1,7 +1,6 @@
 package com.esilv.fink.Adapter;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,8 +15,11 @@ import java.util.List;
 
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> {
 
-    Context context;
-    List<String> TypeDepense, Value, Month, Year;
+    private final Context context;
+    private final List<String> TypeDepense;
+    private final List<String> Value;
+    private final List<String> Month;
+    private final List<String> Year;
 
     public TransactionAdapter(Context context, List<String> TypeDepense, List<String> Value, List<String> Month, List<String> Year) {
         this.context = context;
@@ -49,9 +51,12 @@ public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.
     }
 
     public class TransactionViewHolder extends RecyclerView.ViewHolder {
-        TextView ttype, value, month, year;
+        final TextView ttype;
+        final TextView value;
+        final TextView month;
+        final TextView year;
 
-        public TransactionViewHolder(@NonNull View itemView) {
+        TransactionViewHolder(@NonNull View itemView) {
             super(itemView);
             ttype = itemView.findViewById(R.id.Type);
             value = itemView.findViewById(R.id.Value);

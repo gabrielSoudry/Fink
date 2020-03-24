@@ -1,9 +1,6 @@
 package com.esilv.fink;
 
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.SharedPreferences;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,19 +10,19 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.bumptech.glide.Glide;
 import com.hotmail.or_dvir.easysettings.pojos.EasySettings;
 
 import java.util.ArrayList;
-
-import static android.content.Context.MODE_PRIVATE;
 
 public class RecyclerViewAdapterColor extends RecyclerView.Adapter<RecyclerViewAdapterColor.ViewHolder> {
     private static final String TAG = "RecyclerViewAdapter";
 
     private ArrayList<String> mImages = new ArrayList<>();
     private ArrayList<String> mNames = new ArrayList<>();
-    private Context mcontext;
+    private final Context mcontext;
 
     public RecyclerViewAdapterColor(ArrayList<String> mImages, ArrayList<String> mNames, Context mcontext) {
         this.mImages = mImages;
@@ -72,12 +69,12 @@ public class RecyclerViewAdapterColor extends RecyclerView.Adapter<RecyclerViewA
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        ImageView img;
-        TextView txt;
-        RelativeLayout parent_layout;
+        final ImageView img;
+        final TextView txt;
+        final RelativeLayout parent_layout;
 
 
-        public ViewHolder( View itemView) {
+        ViewHolder(View itemView) {
             super(itemView);
             img = itemView.findViewById(R.id.image);
             txt = itemView.findViewById(R.id.text);

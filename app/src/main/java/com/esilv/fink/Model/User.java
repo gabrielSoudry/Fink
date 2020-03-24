@@ -2,12 +2,11 @@ package com.esilv.fink.Model;
 
 import java.util.Random;
 
-public class User {
+class User {
     private String name;
     private String imageURL;
     private String key;
     private String description;
-    private int position;
 
     public User () {
         Random random = new Random();
@@ -18,7 +17,6 @@ public class User {
         //empty constructor needed
     }
     public User (int position){
-        this.position = position;
 
     }
 

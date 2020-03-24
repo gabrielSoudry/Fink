@@ -37,8 +37,8 @@ public abstract class DemoBase extends AppCompatActivity implements ActivityComp
 
     private static final int PERMISSION_STORAGE = 0;
 
-    protected Typeface tfRegular;
-    protected Typeface tfLight;
+    private Typeface tfRegular;
+    private Typeface tfLight;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {

@@ -17,7 +17,7 @@ public class Customer implements Serializable {
     private Boolean ISACTIVEMEMBER;
     private Float ESTIMATEDSALARY;
     private Boolean EXITED;
-    private String imageURL;
+    private final String imageURL;
 
     public Integer getCUSTOMERID() {
         return CUSTOMERID;

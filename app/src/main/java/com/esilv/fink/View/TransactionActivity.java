@@ -1,18 +1,16 @@
 package com.esilv.fink.View;
 
+import android.app.ProgressDialog;
+import android.os.Bundle;
+import android.util.Log;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.app.ProgressDialog;
-import android.os.Bundle;
-import android.util.Log;
-
-import com.esilv.fink.Adapter.MyRecyclerViewAdapter;
 import com.esilv.fink.Adapter.TransactionAdapter;
 import com.esilv.fink.R;
-import com.esilv.fink.api.ApiGetResponse;
 import com.esilv.fink.api.Customer;
 import com.esilv.fink.api.Transaction;
 import com.esilv.fink.api.TransactionResponse;
@@ -30,17 +28,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 import static androidx.constraintlayout.widget.Constraints.TAG;
 
 public class TransactionActivity extends AppCompatActivity {
-    Integer id;
-    RecyclerView recyclerView;
-    List<String> TypeDepense, Value, Month, Year;
-    Customer customer;
-
-    Retrofit retrofit = new Retrofit.Builder()
+    private final Retrofit retrofit = new Retrofit.Builder()
             .baseUrl("http://130.61.95.117:8000/")
             .addConverterFactory(GsonConverterFactory.create())
             .build();
-    private TransactionService service;
-    List<Transaction> transactions = new ArrayList<>();
+    private Integer id;
+    private RecyclerView recyclerView;
+    private List<String> TypeDepense;
+    private List<String> Value;
+    private List<String> Month;
+    private List<String> Year;
+    private Customer customer;
+    private List<Transaction> transactions = new ArrayList<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +60,7 @@ public class TransactionActivity extends AppCompatActivity {
 
         id = customer.getCUSTOMERID();
 
-        service = retrofit.create(TransactionService.class);
+        TransactionService service = retrofit.create(TransactionService.class);
 
         final ProgressDialog progressDialog;
         progressDialog = new ProgressDialog(TransactionActivity.this);
