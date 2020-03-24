@@ -9,4 +9,11 @@
         <item>reply</item>
         <item>reply_all</item>
     </string-array>
+
+    <string-array name="options">
+        <item>support.v4.app.Fragment</item>
+        <item>support.v4.app.Fragment no rollback</item>
+        <item>app.Fragment infinite scroll</item>
+    </string-array>
+
 </resources>

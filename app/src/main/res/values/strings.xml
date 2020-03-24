@@ -1,4 +1,9 @@
 <resources>
+    <string name="hello_world">Hello world!</string>
+    <string name="text_web_ceo">WEB ANALYTICS</string>
+    <string name="text_web_dev">WEB DEVELOPER</string>
+    <string name="text_e_commerce">e-Commerce</string>
+
     <string name="app_name">Fink</string>
     <string name="title_activity_main">MainActivity</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
