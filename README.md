@@ -7,7 +7,7 @@ Library used :
 
 Many thanks to this tutorial : 
  - Best way to implement Android Splash Screen [link](https://github.com/hasancse91/Android-Splash-Screen-Implementation)
-
+ - How to build Horizontal RecyclerView [link](https://www.geeksforgeeks.org/android-horizontal-recyclerview-with-examples/)
 
 Demo : 
 ![Demo](Demo.gif)
