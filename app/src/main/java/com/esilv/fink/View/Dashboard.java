@@ -104,11 +104,6 @@ public class Dashboard extends DemoBase {
             //Log.v("Example", "onCreate");
             getIntent().setAction("Already created");
             boolean value = EasySettings.retrieveSettingsSharedPrefs(this).getBoolean("darkmode", false);
-            //System.out.println("====================");
-            //System.out.println(value);
-            //System.out.println("====================");
-
-
             super.onCreate(savedInstanceState);
             customerSelected = (Customer)getIntent().getSerializableExtra("customerLogin");
             //Log.v("Example", "onCreate");
@@ -182,8 +177,6 @@ public class Dashboard extends DemoBase {
                     StatisticResponse statResponse = response.body();
                     statistic = statResponse.getStatistics();
                     String test = statistic.toString();
-                    //System.out.println(test);
-
                     PieChartItem chart =  new PieChartItem(generateDataPie(), getApplicationContext());
                     list.add(new PieChartItem(generateDataPie(), getApplicationContext()));
 
@@ -208,14 +201,6 @@ public class Dashboard extends DemoBase {
                 if (response.isSuccessful()) {
                     TransactionResponse transac = response.body();
                     transaction = transac.getTransactions();
-
-                    //String test = statistic.toString();
-                    /*for (Transaction a : transaction) {
-                        System.out.println("transaction");
-                        System.out.println(a.getVALUE());
-                    }*/
-                    // 30 items
-                    //list.add(new LineChartItem(generateDataLine(2 + 1), getApplicationContext()));
                     list.add(new BarChartItem(generateDataBar(transaction), getApplicationContext()));
                     list.add(new LineChartItem(generateDataLine(transaction), getApplicationContext()));
                     ChartDataAdapter cda = new ChartDataAdapter(getApplicationContext(), list);
@@ -316,14 +301,10 @@ public class Dashboard extends DemoBase {
         Double [] amountByMonth = new  Double[13];
         for (int i=0; i<amountByMonth.length;i++) amountByMonth[i] = new Double(0);
         for (Transaction a : transaction) {
-            //System.out.println(a.getMONTH() +" value:" + a.getVALUE());
                 amountByMonth[a.getMONTH()] += a.getVALUE();
-                //System.out.println(a.getVALUE());
         }
 
         for (int i = 1; i < 13; i++) {
-            //System.out.println("amount============");
-            //System.out.println(amountByMonth[i]);
             entries.add(new BarEntry(i, (int)Math.round(amountByMonth[i]),"J"));
         }
 
@@ -416,9 +397,7 @@ public class Dashboard extends DemoBase {
         switch (item.getItemId()) {
             case R.id.viewGithub: {
                 Intent i = new Intent(Intent.ACTION_VIEW);
-                i.putExtra("customerLogin", customerSelected); //Put your id to your next Intent
-
-                i.setData(Uri.parse("https://github.com/gabrielSoudry/Fink/"));
+                i.setData(Uri.parse("https://github.com/gabrielSoudry"));
                 startActivity(i);
                 break;
             }
@@ -431,6 +410,7 @@ public class Dashboard extends DemoBase {
         }
         return true;
     }
+
     @Override
     public void saveToGallery() { /* Intentionally left empty */ }
 }
