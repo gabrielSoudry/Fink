@@ -5,7 +5,7 @@ Library used :
 - [EasySetting](https://github.com/or-dvir/EasySettings)
 - [AppIntro](https://github.com/AppIntro/AppIntro)
 
-Many thanks to this tutorial : 
+Many thanks to these tutorials : 
  - Best way to implement Android Splash Screen [link](https://github.com/hasancse91/Android-Splash-Screen-Implementation)
  - How to build Horizontal RecyclerView [link](https://www.geeksforgeeks.org/android-horizontal-recyclerview-with-examples/)
 
