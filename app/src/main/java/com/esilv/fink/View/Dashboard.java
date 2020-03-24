@@ -65,7 +65,6 @@ import static androidx.constraintlayout.widget.Constraints.TAG;
 
 
 public class Dashboard extends DemoBase {
-
     private StatisticsService service2;
     private TransactionService service3;
     Statistic statistic;
@@ -73,7 +72,6 @@ public class Dashboard extends DemoBase {
     ListView lv;
     ArrayList<ChartItem> list = new ArrayList<>();
     Customer customerSelected ;
-
 
     @Override
     protected void onResume() {
@@ -103,30 +101,30 @@ public class Dashboard extends DemoBase {
         super.onResume();
     }
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        Log.v("Example", "onCreate");
-        getIntent().setAction("Already created");
-        boolean value = EasySettings.retrieveSettingsSharedPrefs(this).getBoolean("darkmode", false);
-        System.out.println("====================");
-        System.out.println(value);
-        System.out.println("====================");
+        @Override
+        protected void onCreate(Bundle savedInstanceState) {
+            //Log.v("Example", "onCreate");
+            getIntent().setAction("Already created");
+            boolean value = EasySettings.retrieveSettingsSharedPrefs(this).getBoolean("darkmode", false);
+            //System.out.println("====================");
+            //System.out.println(value);
+            //System.out.println("====================");
 
 
-        super.onCreate(savedInstanceState);
-        customerSelected = (Customer)getIntent().getSerializableExtra("customerLogin");
-        Log.v("Example", "onCreate");
-        getIntent().setAction("Already created");
-        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        setContentView(R.layout.activity_listview_chart);
-        lv = findViewById(R.id.listView1);
-        new DrawerBuilder().withActivity(this).build();
+            super.onCreate(savedInstanceState);
+            customerSelected = (Customer)getIntent().getSerializableExtra("customerLogin");
+            //Log.v("Example", "onCreate");
+            getIntent().setAction("Already created");
+            getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+                    WindowManager.LayoutParams.FLAG_FULLSCREEN);
+            setContentView(R.layout.activity_listview_chart);
+            lv = findViewById(R.id.listView1);
+            new DrawerBuilder().withActivity(this).build();
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("http://130.61.95.117:8000/")
-                .addConverterFactory(GsonConverterFactory.create())
-                .build();
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://130.61.95.117:8000/")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
 
         service2 = retrofit.create(StatisticsService.class);
         service3 = retrofit.create(TransactionService.class);
@@ -141,8 +139,8 @@ public class Dashboard extends DemoBase {
             li.setBackgroundColor(Color.BLACK);
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.drawer_item_home);
-        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("Our product");
-        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(2).withName("Setting");
+        SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("All my transactions");
+        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(3).withName("");
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -159,15 +157,24 @@ public class Dashboard extends DemoBase {
                 .withOnDrawerItemClickListener(new Drawer.OnDrawerItemClickListener() {
                     @Override
                     public boolean onItemClick(View view, int position, IDrawerItem drawerItem) {
-                        return  true;
+                        if (position == 2){
+                            Intent intent = new Intent(Dashboard.this, TransactionActivity.class);
+                            intent.putExtra("customerLogin", customerSelected); //Put your id to your next Intent
 
-                        // do something with the clicked item :D
+                            startActivity(intent);
+                        }
+                        if (position == 3){
+                            Intent intent = new Intent(Dashboard.this, TransactionActivity.class);
+                            intent.putExtra("customerLogin", customerSelected); //Put your id to your next Intent
+
+                            startActivity(intent);
+                            finish();
+                        }
+                        return  true;
                     }
                 })
                 .build();
         setTitle("Dashboard");
-
-
 
         service2.search(id).enqueue(new Callback<StatisticResponse>() {
             @Override
@@ -177,7 +184,7 @@ public class Dashboard extends DemoBase {
                     StatisticResponse statResponse = response.body();
                     statistic = statResponse.getStatistics();
                     String test = statistic.toString();
-                    System.out.println(test);
+                    //System.out.println(test);
 
                     PieChartItem chart =  new PieChartItem(generateDataPie(), getApplicationContext());
                     list.add(new PieChartItem(generateDataPie(), getApplicationContext()));
@@ -189,7 +196,7 @@ public class Dashboard extends DemoBase {
 
             @Override
             public void onFailure(Call<StatisticResponse> call, Throwable t) {
-                System.out.println("FAILED______________________________________________");
+                //System.out.println("FAILED______________________________________________");
                 Log.e(TAG, "onFailure", t);
             }
         });
@@ -204,11 +211,11 @@ public class Dashboard extends DemoBase {
                     TransactionResponse transac = response.body();
                     transaction = transac.getTransactions();
 
-                    String test = statistic.toString();
-                    for (Transaction a : transaction) {
+                    //String test = statistic.toString();
+                    /*for (Transaction a : transaction) {
                         System.out.println("transaction");
                         System.out.println(a.getVALUE());
-                    }
+                    }*/
                     // 30 items
                     //list.add(new LineChartItem(generateDataLine(2 + 1), getApplicationContext()));
                     list.add(new BarChartItem(generateDataBar(2+ 1,transaction), getApplicationContext()));
@@ -220,13 +227,10 @@ public class Dashboard extends DemoBase {
 
             @Override
             public void onFailure(Call<TransactionResponse> call, Throwable t) {
-                System.out.println("FAILED______________________________________________");
+                //System.out.println("FAILED______________________________________________");
                 Log.e(TAG, "onFailure", t);
             }
         });
-
-
-
     }
 
     /** adapter that supports 3 different item types */
@@ -268,9 +272,9 @@ public class Dashboard extends DemoBase {
         Double [] amountByMonth = new  Double[13];
         for (int i=0; i<amountByMonth.length;i++) amountByMonth[i] = new Double(0);
         for (Transaction a : transaction) {
-            System.out.println(a.getMONTH() +" value:" + a.getVALUE());
+            //System.out.println(a.getMONTH() +" value:" + a.getVALUE());
             amountByMonth[a.getMONTH()] += a.getVALUE();
-            System.out.println(a.getVALUE());
+            //System.out.println(a.getVALUE());
         }
 
 
@@ -314,14 +318,14 @@ public class Dashboard extends DemoBase {
         Double [] amountByMonth = new  Double[13];
         for (int i=0; i<amountByMonth.length;i++) amountByMonth[i] = new Double(0);
         for (Transaction a : transaction) {
-            System.out.println(a.getMONTH() +" value:" + a.getVALUE());
+            //System.out.println(a.getMONTH() +" value:" + a.getVALUE());
                 amountByMonth[a.getMONTH()] += a.getVALUE();
-                System.out.println(a.getVALUE());
+                //System.out.println(a.getVALUE());
         }
 
         for (int i = 1; i < 13; i++) {
-            System.out.println("amount============");
-            System.out.println(amountByMonth[i]);
+            //System.out.println("amount============");
+            //System.out.println(amountByMonth[i]);
             entries.add(new BarEntry(i, (int)Math.round(amountByMonth[i]),"J"));
         }
 
@@ -375,15 +379,15 @@ public class Dashboard extends DemoBase {
     private PieData generateDataPie() {
         ArrayList<PieEntry> entries = new ArrayList<>();
         entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getSHOPPING())),"Shopping")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getELECTRICITE())),"Electricite")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getALIMENTATION())),"Alimentation")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getELECTRICITE())),"Electricity")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getALIMENTATION())),"Food")));
         entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getINTERNET())),"Internet")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getAUTRES())),"Autre")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getLOISIRS())),"Loisirs")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getAUTRES())),"Other")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getLOISIRS())),"Leisure")));
         entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getMULTIMEDIA())),"Multimedia")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getSANTE())),"Sante")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getSANTE())),"Healthcare")));
         entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getRESTAURANTS())),"Restaurant")));
-        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getRETRAITS())),"Retrait")));
+        entries.add((new PieEntry(Float.valueOf(String.valueOf(statistic.getRETRAITS())),"Withdrawal")));
 
         PieDataSet d = new PieDataSet(entries, "");
 
@@ -416,7 +420,7 @@ public class Dashboard extends DemoBase {
                 Intent i = new Intent(Intent.ACTION_VIEW);
                 i.putExtra("customerLogin", customerSelected); //Put your id to your next Intent
 
-                i.setData(Uri.parse("https://www.facebook.com/"));
+                i.setData(Uri.parse("https://github.com/gabrielSoudry/Fink/"));
                 startActivity(i);
                 break;
             }

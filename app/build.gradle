@@ -96,6 +96,6 @@ dependencies {
     implementation 'com.github.or-dvir.EasySettings:easysettings-dialogs:1.1.4'
 
     implementation 'androidx.cardview:cardview:1.0.0'
-    compile 'com.cleveroad:slidingtutorial:1.0.8'
+    implementation 'com.cleveroad:slidingtutorial:1.0.8'
 
 }

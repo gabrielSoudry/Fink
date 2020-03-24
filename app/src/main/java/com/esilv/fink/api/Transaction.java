@@ -20,12 +20,35 @@ public class Transaction {
         return TRANSACTIONTYPE;
     }
 
+    public String getTRANSACTIONTYPEString() {
+        System.out.println("TRANSACTION");
+        System.out.println(TRANSACTIONTYPE.split("\\.")[0]);
+        System.out.println(TRANSACTIONTYPE.split("\\.")[1]);
+        return TRANSACTIONTYPE.split("\\.")[1];
+    }
+
     public Double getVALUE() {
         return VALUE;
     }
 
+    public String getVALUEString() {
+        if (VALUE.toString().split("\\.")[1].length() == 1) {
+            return VALUE.toString() + "0 €";
+        } else {
+            return VALUE.toString() + " €";
+        }
+    }
+
     public Integer getMONTH() {
         return MONTH;
+    }
+
+    public String getMONTHString() {
+        if (MONTH < 10){
+            return "0" + MONTH.toString();
+        } else {
+            return MONTH.toString();
+        }
     }
 
     public Integer getYEAR() {

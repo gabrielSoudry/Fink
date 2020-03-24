@@ -29,7 +29,7 @@
             android:layout_height="wrap_content"
             android:paddingTop="10dp"
             android:paddingLeft="10dp"
-            android:text="Apparrence"
+            android:text="@string/apparence"
             android:textStyle="bold"
             android:textColor="@color/md_cyan_700"
             style="?android:attr/preferenceStyle"
@@ -42,7 +42,7 @@
             android:layout_height="wrap_content"
             android:paddingLeft="10dp"
             android:paddingTop="10dp"
-            android:text="Graphic color"
+            android:text="@string/graph_colors"
             android:textColor="@color/md_black_1000" />
 
 

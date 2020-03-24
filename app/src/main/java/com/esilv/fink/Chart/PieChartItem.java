@@ -101,11 +101,11 @@ public class PieChartItem extends ChartItem {
     }
 
     private SpannableString generateCenterText() {
-        SpannableString s = new SpannableString("Fink \n Gestion \n Optimization");
-        s.setSpan(new RelativeSizeSpan(1.6f), 0, 4, 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.VORDIPLOM_COLORS[0]), 0, 4, 0);
-        s.setSpan(new RelativeSizeSpan(.9f), 4, 25, 0);
-        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()),4 ,29 , 0);
+        SpannableString s = new SpannableString("Transaction\nType\nSegmentation");
+        s.setSpan(new RelativeSizeSpan(1.6f), 0, 11, 0);
+        s.setSpan(new ForegroundColorSpan(ColorTemplate.PASTEL_COLORS[1]), 0, 11, 0);
+        s.setSpan(new RelativeSizeSpan(.9f), 11, 27, 0);
+        s.setSpan(new ForegroundColorSpan(ColorTemplate.getHoloBlue()),11 ,29 , 0);
         return s;
     }
 

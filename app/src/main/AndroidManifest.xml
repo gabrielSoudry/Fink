@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.esilv.fink">
+    package="com.esilv.fink"
+    android:targetSandboxVersion="1">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -11,8 +12,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar"
+        android:usesCleartextTraffic="true"
+        android:networkSecurityConfig="@xml/network_security_config">
 
+
+        <activity
+            android:name=".View.TransactionActivity"
+            android:label="@string/title_activity_transaction"
+            android:theme="@style/NoActionBar"></activity>
         <activity
             android:name=".View.Dashboard"
             android:label="Dashboard" />
@@ -21,10 +29,8 @@
             android:name=".View.MainActivity"
             android:label="@string/title_activity_main"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity
-            android:name=".View.SettingsAcctivity"/>
-        <activity
-            android:name=".SettingsAcctivity"/>
+        <activity android:name=".View.SettingsAcctivity" />
+        <activity android:name=".SettingsAcctivity" />
         <activity
             android:name=".View.SplashScreenActivity"
             android:theme="@style/AppTheme.Launcher">
