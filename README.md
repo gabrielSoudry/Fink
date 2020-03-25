@@ -1,6 +1,7 @@
 # Fink The OpenSource Application for your budget !
 
-AndroidX application 
+AndroidX application
+
 Library used :  
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart)
 - [EasySetting](https://github.com/or-dvir/EasySettings)
