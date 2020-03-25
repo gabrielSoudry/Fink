@@ -15,7 +15,8 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".supportTutorial.IntroActivity"></activity>
+        <activity android:name=".View.GetProductActivity"></activity>
+        <activity android:name=".supportTutorial.IntroActivity" />
         <activity
             android:name=".View.TransactionActivity"
             android:label="@string/title_activity_transaction"

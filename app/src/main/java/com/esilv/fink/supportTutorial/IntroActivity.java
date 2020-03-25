@@ -22,9 +22,9 @@ public class IntroActivity extends AppIntro {
 
         // Add your slide fragments here.
         // AppIntro will automatically generate the dots indicator and buttons.
-        addSlide(AppIntroFragment.newInstance("Welcome on Fink ! ", "Your application for your budget and investment.. ",R.drawable.app_logo, Color.parseColor("#222222")));
-        addSlide(AppIntroFragment.newInstance("Financial Overview", "Quick overview dashboard, budgets, reports with customizations",R.mipmap.capture_a, Color.parseColor("#222222")));
-        addSlide(AppIntroFragment.newInstance("Accounts ", "Checking,Saving,credit, assets, and inverstments using Machine Learning Agorithm on our server... Totally OpenSource ! ",R.mipmap.capture, Color.parseColor("#222222")));
+        addSlide(AppIntroFragment.newInstance("Welcome to Fink !", "The application for your budget and investments",R.drawable.app_logo1, Color.parseColor("#222222")));
+        addSlide(AppIntroFragment.newInstance("Financial Overview", "Customisable dashboard for an overview of your expenses in the blink of an eye",R.mipmap.capture_a, Color.parseColor("#222222")));
+        addSlide(AppIntroFragment.newInstance("Professional Loan Counseling", "Get the product that best matches your needs, powered by Machine Learning !",R.mipmap.capture, Color.parseColor("#222222")));
 
     }
 

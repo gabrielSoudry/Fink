@@ -1,0 +1,169 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.GetProductActivity"
+    android:background="#181A1B"
+    android:id="@+id/productLayout">
+
+    <TextView
+        android:id="@+id/ProductTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="85dp"
+        android:gravity="center"
+        android:text="@string/FinkCatchphrase"
+        android:textColor="#DEFFFFFF"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardViewProduct"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="100dp"
+        app:cardElevation="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ProductTitle">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#181A1B">
+
+            <TextView
+                android:id="@+id/ProductTotalText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="72 286.98 €"
+                android:textColor="@color/lightBlue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/ProductTotal"
+                app:layout_constraintEnd_toEndOf="@+id/LoanValueText"
+                app:layout_constraintTop_toTopOf="@+id/ProductTotal" />
+
+            <TextView
+                android:id="@+id/ProductTotal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Total to be reimbursed"
+                android:textColor="@color/lightSaturatedBlue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/LoanValue"
+                app:layout_constraintTop_toBottomOf="@+id/LoanValue" />
+
+            <TextView
+                android:id="@+id/Mensualite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Monthly Payment"
+                android:textColor="@color/lightSaturatedBlue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/ProductTotal"
+                app:layout_constraintTop_toBottomOf="@+id/ProductTotal" />
+
+            <TextView
+                android:id="@+id/LoanValueText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="62 000 €"
+                android:textColor="@color/lightBlue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/LoanValue"
+                app:layout_constraintEnd_toEndOf="@+id/DurationText"
+                app:layout_constraintTop_toTopOf="@+id/LoanValue" />
+
+            <TextView
+                android:id="@+id/Duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Duration"
+                android:textColor="@color/lightSaturatedBlue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/BankName"
+                app:layout_constraintTop_toBottomOf="@+id/BankName" />
+
+            <TextView
+                android:id="@+id/BankName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="40dp"
+                android:text="Bank Name"
+                android:textColor="@color/lightSaturatedBlue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/LoanValue"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:text="Loan Value"
+                android:textColor="@color/lightSaturatedBlue"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                app:layout_constraintStart_toStartOf="@+id/Duration"
+                app:layout_constraintTop_toBottomOf="@+id/Duration" />
+
+            <TextView
+                android:id="@+id/DurationText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="25 Years"
+                android:textColor="@color/lightBlue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/Duration"
+                app:layout_constraintEnd_toEndOf="@+id/BankNameText"
+                app:layout_constraintTop_toTopOf="@+id/Duration" />
+
+            <TextView
+                android:id="@+id/BankNameText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="40dp"
+                android:text="Credit alecte etranger"
+                android:textColor="@color/lightBlue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/BankName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/BankName" />
+
+            <TextView
+                android:id="@+id/MensualiteText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="401.59 €/month"
+                android:textColor="@color/lightBlue"
+                android:textSize="16sp"
+                app:layout_constraintBottom_toBottomOf="@+id/Mensualite"
+                app:layout_constraintEnd_toEndOf="@+id/ProductTotalText"
+                app:layout_constraintTop_toTopOf="@+id/Mensualite" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <pl.droidsonroids.gif.GifImageView
+        android:id="@+id/loadingGif"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/loading"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></pl.droidsonroids.gif.GifImageView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

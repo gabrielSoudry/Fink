@@ -38,12 +38,15 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Customer selected = mData.get(position);
-        holder.myTextView.setText(selected.getSURNAME());
-        holder.dateTextView.setText(selected.getBIRTHDATE().substring(0,10));
-        holder.nationality.setText(selected.getCOUNTRY());
+        holder.nameTV.setText(selected.getSURNAME());
+        holder.dateTV.setText(selected.getBIRTHDATE().substring(0,10));
+        holder.countryTV.setText(selected.getCOUNTRY());
+        holder.nbOfProductsTV.setText(selected.getNBOFPRODUCTS().toString());
+        holder.salaryTV.setText(selected.getESTIMATEDSALARY().toString().split("\\.")[0].replaceAll("(\\d)(?=(\\d{3})+$)", "$1 ") + " €");
+        holder.balanceTV.setText(selected.getBALANCE().toString().split("\\.")[0].replaceAll("(\\d)(?=(\\d{3})+$)", "$1 ") + " €");
 
-        System.out.println(selected.getSURNAME());
-        Picasso.get().load(selected.getImageUrl()).resize(150, 150).centerCrop().into(holder.myImageView);
+        //System.out.println(selected.getSURNAME());
+        Picasso.get().load(selected.getImageUrl()).resize(150, 150).centerCrop().into(holder.imageView);
 
     }
 
@@ -56,17 +59,23 @@ public class MyRecyclerViewAdapter extends RecyclerView.Adapter<MyRecyclerViewAd
 
     // stores and recycles views as they are scrolled off screen
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
-        final TextView myTextView;
-        final ImageView myImageView;
-        final TextView dateTextView;
-        final TextView nationality;
+        final TextView nameTV;
+        final ImageView imageView;
+        final TextView dateTV;
+        final TextView countryTV;
+        final TextView nbOfProductsTV;
+        final TextView salaryTV;
+        final TextView balanceTV;
 
         ViewHolder(View itemView) {
             super(itemView);
-            myTextView = itemView.findViewById(R.id.nameTextView);
-            myImageView = itemView.findViewById(R.id.UserImageView);
-            dateTextView = itemView.findViewById(R.id.dateTextView);
-            nationality = itemView.findViewById(R.id.NationalityTextView);
+            nameTV = itemView.findViewById(R.id.nameTextView);
+            imageView = itemView.findViewById(R.id.UserImageView);
+            dateTV = itemView.findViewById(R.id.dateTextView);
+            countryTV = itemView.findViewById(R.id.NationalityTextView);
+            nbOfProductsTV = itemView.findViewById(R.id.NbOfProducts);
+            salaryTV = itemView.findViewById(R.id.Salary);
+            balanceTV = itemView.findViewById(R.id.Balance);
 
             itemView.setOnClickListener(this);
         }

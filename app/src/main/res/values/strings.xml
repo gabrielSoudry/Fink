@@ -31,4 +31,9 @@
     <string name="my_transactions">My transactions</string>
     <string name="apparence">Apparence</string>
     <string name="graph_colors">Graph colors</string>
+    <string name="loginTitle">Select account to log in</string>
+    <string name="number_of_loans">Number of loans</string>
+    <string name="salary">Salary</string>
+    <string name="balance">Account balance</string>
+    <string name="FinkCatchphrase">Fink\'s searching !</string>
 </resources>

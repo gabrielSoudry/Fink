@@ -133,7 +133,7 @@ public class Dashboard extends DemoBase {
 
         PrimaryDrawerItem item1 = new PrimaryDrawerItem().withIdentifier(1).withName(R.string.drawer_item_home);
         SecondaryDrawerItem item2 = new SecondaryDrawerItem().withIdentifier(2).withName("All my transactions");
-        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(3).withName("");
+        SecondaryDrawerItem item3 = new SecondaryDrawerItem().withIdentifier(3).withName("Get tailored product for my needs");
 
         Toolbar myToolbar = findViewById(R.id.my_toolbar);
         setSupportActionBar(myToolbar);
@@ -157,11 +157,10 @@ public class Dashboard extends DemoBase {
                             startActivity(intent);
                         }
                         if (position == 3){
-                            Intent intent = new Intent(Dashboard.this, TransactionActivity.class);
+                            Intent intent = new Intent(Dashboard.this, GetProductActivity.class);
                             intent.putExtra("customerLogin", customerSelected); //Put your id to your next Intent
 
                             startActivity(intent);
-                            finish();
                         }
                         return  true;
                     }

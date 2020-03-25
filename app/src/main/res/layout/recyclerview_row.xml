@@ -1,56 +1,118 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_height="160dp"
     android:layout_margin="5dp"
-    card_view:cardCornerRadius="5dp"
-    card_view:cardElevation="10dp"
-    android:layout_height="200dp">
+    card_view:cardCornerRadius="2dp"
+    card_view:cardElevation="10dp">
 
-    <LinearLayout
-        android:orientation="horizontal"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="153dp"
+        android:orientation="horizontal">
+
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
             android:id="@+id/UserImageView"
+            android:layout_width="157dp"
+            android:layout_height="156dp"
             android:padding="5dp"
-            android:src="@drawable/placeholder" />
+            android:src="@drawable/placeholder"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:orientation="vertical"
+        <TextView
+            android:id="@+id/nameTextView"
             android:layout_width="wrap_content"
-            android:layout_height="match_parent">
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Teacher Name"
-                android:id="@+id/nameTextView"
-                android:padding="5dp"
-                android:textColor="@color/colorAccent" />
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Date"
-                android:id="@+id/dateTextView"
-                android:padding="5dp"
-                android:textStyle="italic"/>
+            android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:text="Name"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textColor="@color/colorAccent"
+            card_view:layout_constraintStart_toEndOf="@+id/UserImageView"
+            card_view:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:text="Description"
-                android:minLines="2"
-                android:textStyle="italic"
-                android:id="@+id/NationalityTextView"
-                android:padding="5dp"/>
+        <TextView
+            android:id="@+id/dateTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Birthdate"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="italic"
+            card_view:layout_constraintStart_toStartOf="@+id/nameTextView"
+            card_view:layout_constraintTop_toBottomOf="@+id/nameTextView" />
 
-        </LinearLayout>
-    </LinearLayout>
+        <TextView
+            android:id="@+id/NationalityTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="10dp"
+            android:text="Country"
+            android:textAppearance="?android:attr/textAppearanceSmall"
+            android:textStyle="italic"
+            card_view:layout_constraintBottom_toBottomOf="@+id/dateTextView"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintTop_toTopOf="@+id/dateTextView" />
 
-    </androidx.cardview.widget.CardView>
+        <TextView
+            android:id="@+id/NbOfProductsTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/number_of_loans"
+            card_view:layout_constraintStart_toStartOf="@+id/dateTextView"
+            card_view:layout_constraintTop_toBottomOf="@+id/dateTextView" />
+
+        <TextView
+            android:id="@+id/SalaryTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/salary"
+            card_view:layout_constraintStart_toStartOf="@+id/NbOfProductsTitle"
+            card_view:layout_constraintTop_toBottomOf="@+id/NbOfProductsTitle" />
+
+        <TextView
+            android:id="@+id/BalanceTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="@string/balance"
+            card_view:layout_constraintStart_toStartOf="@+id/SalaryTitle"
+            card_view:layout_constraintTop_toBottomOf="@+id/SalaryTitle" />
+
+        <TextView
+            android:id="@+id/NbOfProducts"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1"
+            card_view:layout_constraintBottom_toBottomOf="@+id/NbOfProductsTitle"
+            card_view:layout_constraintEnd_toEndOf="@+id/NationalityTextView"
+            card_view:layout_constraintTop_toTopOf="@+id/NbOfProductsTitle" />
+
+        <TextView
+            android:id="@+id/Salary"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="62 000 €"
+            card_view:layout_constraintBottom_toBottomOf="@+id/SalaryTitle"
+            card_view:layout_constraintEnd_toEndOf="@+id/NbOfProducts"
+            card_view:layout_constraintTop_toTopOf="@+id/SalaryTitle" />
+
+        <TextView
+            android:id="@+id/Balance"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="20 560 €"
+            card_view:layout_constraintBottom_toBottomOf="@+id/BalanceTitle"
+            card_view:layout_constraintEnd_toEndOf="@+id/Salary"
+            card_view:layout_constraintTop_toTopOf="@+id/BalanceTitle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

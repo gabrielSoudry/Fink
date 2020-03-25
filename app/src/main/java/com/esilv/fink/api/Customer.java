@@ -75,7 +75,7 @@ public class Customer implements Serializable {
         return imageURL;
     }
 
-    public  Customer() {
+    public Customer() {
         Random random = new Random();
         int nombreAleatoire = 0 + (int)(Math.random() * ((500 - 0) + 1));
         this.imageURL= "https://i.picsum.photos/id/"+nombreAleatoire+ "/200/200.jpg";
