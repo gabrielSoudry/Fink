@@ -19,6 +19,13 @@ public class InnerTransaction {
 
     }
 
+    public InnerTransaction(Transaction transaction) {
+        this.typeDepense = transaction.getTRANSACTIONTYPEString();
+        this.value = transaction.getVALUEString();
+        this.month = transaction.getMONTHString();
+        this.year = transaction.getYEAR().toString();
+    }
+
     public String getTypeDepense() {
         return typeDepense;
     }

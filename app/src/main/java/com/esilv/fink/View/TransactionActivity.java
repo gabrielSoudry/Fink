@@ -131,14 +131,8 @@ public class TransactionActivity extends AppCompatActivity {
                     TransactionResponse transactionResponse = response.body();
                     transactions = transactionResponse.getTransactions();
 
-                    String temp = "";
-
                     for (int i = 0; i < transactions.size(); i++){
-                        InnerTransaction temp1 = new InnerTransaction();
-                        temp1.setMonth(transactions.get(i).getVALUEString());
-                        temp1.setValue(transactions.get(i).getVALUEString());
-                        temp1.setYear(transactions.get(i).getYEAR().toString());
-                        temp1.setTypeDepense(transactions.get(i).getTRANSACTIONTYPEString());
+                        InnerTransaction temp1 = new InnerTransaction(transactions.get(i));
                         transactionModel.add(temp1);
                     }
                     adapter.notifyItemRangeChanged(0, transactionModel.size());
