@@ -17,7 +17,6 @@ import com.esilv.fink.api.InnerTransaction;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class TransactionAdapter extends RecyclerView.Adapter<TransactionAdapter.TransactionViewHolder> implements Filterable {
 
     private final Context context;

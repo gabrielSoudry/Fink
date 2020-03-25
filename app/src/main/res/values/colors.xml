@@ -7,5 +7,7 @@
     <color name="saturatedBlue">#294FFF</color>
     <color name="lightSaturatedBlue">#7890FF</color>
     <color name="lightBlue">#90A8FF</color>
+    <color name="background">#181A1B</color>
+    <color name="whiteText">#DEFFFFFF</color>
 
 </resources>

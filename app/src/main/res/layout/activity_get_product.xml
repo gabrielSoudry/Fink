@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".View.GetProductActivity"
-    android:background="#181A1B"
+    android:background="@color/background"
     android:id="@+id/productLayout">
 
     <TextView
@@ -15,7 +15,7 @@
         android:layout_marginTop="85dp"
         android:gravity="center"
         android:text="@string/FinkCatchphrase"
-        android:textColor="#DEFFFFFF"
+        android:textColor="@color/whiteText"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"

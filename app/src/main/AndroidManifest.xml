@@ -15,7 +15,11 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.Light.NoActionBar"
         android:usesCleartextTraffic="true">
-        <activity android:name=".View.GetProductActivity"></activity>
+        <activity
+            android:name=".View.MainActivity"
+            android:label="@string/title_activity_main"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".View.GetProductActivity" />
         <activity android:name=".supportTutorial.IntroActivity" />
         <activity
             android:name=".View.TransactionActivity"
@@ -25,10 +29,6 @@
             android:name=".View.Dashboard"
             android:label="Dashboard" />
         <activity android:name=".View.LoginActivity" />
-        <activity
-            android:name=".View.MainActivity"
-            android:label="@string/title_activity_main"
-            android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".View.SettingsAcctivity" />
         <activity android:name=".SettingsAcctivity" />
         <activity

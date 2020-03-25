@@ -16,6 +16,7 @@ import com.esilv.fink.R;
 import com.esilv.fink.api.ApiGetResponse;
 import com.esilv.fink.api.Customer;
 import com.esilv.fink.api.MyAPIService;
+import com.squareup.haha.perflib.Main;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -77,8 +78,7 @@ public class LoginActivity extends AppCompatActivity implements MyRecyclerViewAd
 
     @Override
     public void onItemClick(View view, int position) {
-        //Toast.makeText(this, "You clicked " + adapter.getItem(position) + " on row number " + position, Toast.LENGTH_SHORT).show();
-        Intent intents = new Intent(LoginActivity.this, Dashboard.class);
+        Intent intents = new Intent(LoginActivity.this, MainActivity.class);
         intents.putExtra("customerLogin", adapter.getItem(position));
         startActivity(intents);
     }
