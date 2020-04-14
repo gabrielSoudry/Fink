@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".View.MainActivity"
+    android:background="@color/background">
+
+    <Button
+        android:id="@+id/finkMainButton"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="70dp"
+        android:background="@drawable/button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/dashboardButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="28dp"
+        android:text="Dashboard"
+        android:textColor="@color/lightSaturatedBlue"
+        android:background="@drawable/roundbuttontop"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/bahn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/finkMainButton" />
+
+    <Button
+        android:id="@+id/transactionsButton"
+        android:layout_width="300dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="MY TRANSACTIONS"
+        android:textColor="@color/background"
+        android:background="@drawable/roundbutton"
+        android:textSize="24dp"
+        android:textStyle="bold"
+        android:fontFamily="@font/bahn"
+        app:layout_constraintEnd_toEndOf="@+id/dashboardButton"
+        app:layout_constraintStart_toStartOf="@+id/dashboardButton"
+        app:layout_constraintTop_toBottomOf="@+id/dashboardButton" />
+</androidx.constraintlayout.widget.ConstraintLayout>
