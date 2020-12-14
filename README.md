@@ -14,3 +14,6 @@ Many thanks to these tutorials :
 Demo : 
 ![Demo](Demo.gif)
 
+## Authors
+* **Gabriel Soudry** - *Initial Work*
+* **Quentin Tourette** - *Initial Work*
